@@ -68,9 +68,9 @@ property measurable without introducing a judge that drifts.
   two guards is one that has been documenting its failures rather than fixing
   them.
 
-## Related
+## Where it lands
 
-Lessons [00](../workshop/lessons/00-enforcement-map/README.md),
+→ Lessons [00](../workshop/lessons/00-enforcement-map/README.md),
 [01](../workshop/lessons/01-permissions/README.md),
 [02](../workshop/lessons/02-hooks/README.md),
 [03](../workshop/lessons/03-deterministic-guards/README.md).

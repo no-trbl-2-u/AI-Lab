@@ -88,8 +88,8 @@ Promotion triggers, in order of likely usefulness:
 - Every partition should state, in one line, **who writes it and who reads it.**
   If you can't answer both, it isn't a partition.
 
-## Related
+## Where it lands
 
-Lesson [05](../workshop/lessons/05-memory/README.md); the promotion ladder is
+→ Lesson [05](../workshop/lessons/05-memory/README.md); the promotion ladder is
 the same machinery as resource [11](11-enforcement-boundary.md)'s tiering and
 lesson [04](../workshop/lessons/04-reference-pools/README.md)'s authority chain.
