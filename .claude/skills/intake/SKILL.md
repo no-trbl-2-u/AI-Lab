@@ -88,6 +88,10 @@ Concrete, not categorical: `"prefix caching and what invalidates it"` not
 
 Do not summarize. Do not evaluate. Do not hint at what you think.
 
+**Fetching arXiv:** pull `/abs/<id>` for title, authors, date and abstract — the
+`/pdf/` fetch extracts headings poorly, but it saves the file locally, and that
+copy reads cleanly page-by-page in phase 2. Fetch both in one call.
+
 **The ordering is the methodology.** Explain the resource first and ask what the
 reader knew second, and the answer is contaminated — they'll report
 understanding acquired ninety seconds earlier and be unable to tell the
@@ -106,6 +110,14 @@ Then one open follow-up: **what do you expect this resource to say?**
 
 That prediction is the most valuable line in the delta. A wrong expectation
 names a belief worth correcting, and phase 2 will measure it.
+
+**"No expectation" is a first-class answer.** A reader who picked the resource
+on intrigue rather than a hypothesis has nothing to predict from, and pressing
+for a guess manufactures noise. Record `expectation: none — exploratory`, state
+the consequence, and move on — **do not ask twice.** The consequence is real
+and belongs in the delta: no expectation diff in phase 2, so the placement half
+carries all the weight, and phases must be cut smaller because nothing can be
+assumed as background.
 
 Write `resources/deltas/YYYY-MM-DD-<slug>.md` **now**, before phase 2.
 
@@ -195,6 +207,12 @@ node guards/intake.mjs
 
 ## Where it lands
 → <lesson or project link>
+
+## Related
+<one or two lines>
+
+<!-- required when Evidence is `anecdotal`, `none`, or n=1 -->
+**Evidence caveat for future citation:** <what this may and may not be cited for>
 ```
 
 ---
@@ -211,15 +229,22 @@ node guards/intake.mjs
    visit. The bar is "changes something," not "is correct."
 6. **Summaries are not the product.** A note that only summarizes is a link
    with extra steps.
+7. **Weak evidence gets a citation caveat.** A note whose Evidence is
+   `anecdotal`, `none`, or n=1 closes with an explicit line saying what it may
+   and may not be cited for. Future-you will remember the ideas and forget the
+   sample size — the caveat is written for them, not for now.
 
 ## Failure modes
 
 - **Reader defers to my read.** If phase-1 answers track whatever I emphasized
   in phase 0, the delta is contaminated — I skimmed too loudly. Re-skim.
 - **Everything looks new** because I didn't grep the pool first.
-- **The eight points come back all-full.** Real articles leave gaps. An
-  overview with no `inferred` and no missing points means I filled holes with
-  plausible-sounding invention.
+- **The eight points come back all-full.** Usually a warning sign, since most
+  sources leave applicability and cost unstated. But the real test is
+  **provenance, not fullness**: for each point, can I name where in the source
+  it came from? If yes, the source is unusually thorough and the fullness is
+  earned — some are. If no, I filled a hole with plausible invention. Mark it
+  `inferred` or drop it.
 - **Paywalled or won't fetch.** Say so, ask for a paste. Never evaluate from
   title and abstract.
 - **Out of scope** — model training, fine-tuning, anything below the harness
