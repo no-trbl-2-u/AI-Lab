@@ -3,6 +3,13 @@
 **Type:** original pattern. Not published anywhere I could find. Extracted from
 the `rules-reader` agent in `no-trbl-2-u/board-brainstorm`.
 
+## Why it matters
+
+Subagents are normally reached for to gain parallelism or to isolate context.
+This is a third use with no published counterpart, and it turns an
+unquantifiable property — "is this artifact self-sufficient?" — into a number
+without introducing a judge that drifts.
+
 ## The pattern
 
 > To test whether an artifact is self-sufficient, give an agent **only** that
@@ -88,8 +95,8 @@ reader could have known.
 - Give the findings a rigid schema and validate it with a `SubagentStop` hook.
   A prose-declared output contract holds only while the model cooperates.
 
-## Related
+## Where it lands
 
-Lesson [06](../workshop/lessons/06-agents-and-sandboxing/README.md); the verdict
+→ Lesson [06](../workshop/lessons/06-agents-and-sandboxing/README.md); the verdict
 split is resource [11](11-enforcement-boundary.md); the drift argument is
 resource [12](12-long-horizon-control.md).

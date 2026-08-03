@@ -103,7 +103,7 @@ from memory — is the same mechanism at session scope.
   a `NEEDS_HUMAN_ATTENTION`-style entry. A capped loop that files a blocker
   beats an uncapped one that apologizes.
 
-## Related
+## Where it lands
 
-Lesson [08](../workshop/lessons/08-long-horizon/README.md);
+→ Lesson [08](../workshop/lessons/08-long-horizon/README.md);
 [projects/ — long-horizon runner](../projects/README.md).
