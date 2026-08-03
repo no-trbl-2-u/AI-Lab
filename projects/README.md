@@ -3,8 +3,19 @@
 Work that comes **after** the harness exists. Each project either extends the
 harness or is encapsulated here.
 
+Projects are the output of `/decompose-resource` (see [PIPELINE.md](../PIPELINE.md)),
+so each one gets:
+
+```
+projects/<name>/
+  PRD.md        what it's for; what you'll be able to do after
+  ROADMAP.md    ordered phases, dependencies, current position
+  phases/NN.md  one per phase, each with its own failing check
+```
+
 Nothing lives here yet — `workshop/` has to run first, because every project
-below assumes layers it builds.
+below assumes layers it builds. The entries below are hand-written placeholders
+and should be replaced by real decompositions once `/decompose-resource` exists.
 
 ## Queued
 

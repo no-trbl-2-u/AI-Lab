@@ -13,11 +13,16 @@ model.
 ## Layout
 
 ```
+PIPELINE.md  How material enters this repo and becomes work.
 resources/   Notes on harness design. Prior art + synthesis.
 workshop/    Project 1 — build-a-harness-workshop. Ten lessons.
 projects/    Work that comes after the harness exists.
 .claude/     This repo's own harness — the thing the workshop builds.
 ```
+
+Nothing enters `resources/` without passing `/intake`; nothing becomes a project
+without `/decompose-resource`. See [PIPELINE.md](PIPELINE.md) — the governing
+rule is that **the deliverable is your understanding, not the artifact.**
 
 ## The plan
 

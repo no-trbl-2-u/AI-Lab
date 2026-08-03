@@ -8,6 +8,12 @@ Each note carries: source, why it matters, core patterns, memorable numbers,
 **wording notes** (what it should change in `SKILL.md` / `CLAUDE.md` /
 `AGENTS.md`), tensions with the other notes, and where it lands in the workshop.
 
+**This is a gated pool.** Nothing enters without passing `/intake`
+([PIPELINE.md](../PIPELINE.md)); what didn't make it is recorded in
+[REJECTED.md](REJECTED.md), and what you knew before reading each one is in
+[deltas/](deltas/README.md). Promotion is the only path in — which is what keeps
+the pool from filling with material nobody chose.
+
 ## Core — read these
 
 The four that map to actual gaps. 11 and 12 are the ones to read first.
