@@ -215,6 +215,61 @@ node guards/intake.mjs
 **Evidence caveat for future citation:** <what this may and may not be cited for>
 ```
 
+## Phase 5 — the explainer (kept resources only)
+
+`resources/explainers/NN-<slug>.html` — a single self-contained page answering
+one question: **what is this thing for?**
+
+Not a summary. The note is the summary. This is *first contact* — what you'd
+want in front of you before deciding whether to spend a week on the paper, built
+for scanning rather than reading.
+
+### Fixed skeleton
+
+Same six sections every time. **The structure is fixed so this stays a
+ten-minute job rather than a bespoke design project** — only the content varies.
+
+| | Section | Source |
+|---|---|---|
+| — | Hero: title, source, one-line thesis | Thesis |
+| 01 | The problem it exists to solve | Problem |
+| 02 | How it works — **one** diagram | Mechanism |
+| 03 | **How much to believe it** | Evidence |
+| 04 | The numbers | Evidence |
+| 05 | The one thing to remember | the single most reusable finding |
+| 06 | What we take from it — take / leave / conflicts | So what, Conflicts |
+
+**Section 03 is non-negotiable and never softened.** A visual explainer makes weak
+evidence feel strong — big type and clean diagrams read as authority. The evidence
+strip is the counterweight, and it goes *before* the results, not after. Every row
+carries an icon and a written tier label, never colour alone.
+
+Sections 01 and 06 use the reader's language, not the paper's. If the paper says
+"normative calculus," section 06 says "the ethics engine."
+
+### Build rules
+
+- **Self-contained.** Inline CSS and JS, no external requests, no fonts, no CDN.
+  It must open from disk with no network.
+- **Theme-aware.** Light and dark, via `prefers-color-scheme` plus a
+  `[data-theme]` override.
+- **Charts follow the `dataviz` skill.** Load it before writing any chart code
+  and run the palette validator — do not eyeball colour.
+- **Wide content scrolls in its own container.** The page body never scrolls
+  sideways.
+- **Every chart gets a table view** behind a `<details>`.
+- **Footer states the simplification**: the note has the caveats, the paper has
+  the detail.
+- **Render it and look at it.** The validator checks colour, not layout. If the
+  browser pane won't display, say so rather than claiming it was verified.
+
+### Scope discipline
+
+One diagram in section 02, not four. One chart in section 04, or none if the
+paper has no numbers worth plotting. **A paper with no numbers still gets an
+explainer** — sections 03 and 04 just say so plainly, which is itself the useful
+signal.
+
 ---
 
 ## Rules

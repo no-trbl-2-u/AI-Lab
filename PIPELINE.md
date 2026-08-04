@@ -4,7 +4,7 @@ How material enters this repo and becomes work. Four stages, three of them
 skills. Nothing skips a stage.
 
 ```
-link → /intake → resources/ (kept) or REJECTED.md (not)
+link → /intake → resources/ (kept: note + explainer) or REJECTED.md (not)
                       ↓ + knowledge delta
               /decompose-resource → projects/<name>/{PRD, ROADMAP, phases/}
                       ↓
@@ -30,7 +30,11 @@ The conversation covers: what it claims, what's genuinely new against the
 existing 14 notes, where it contradicts something already here, and whether it
 changes anything we'd actually do.
 
-**Kept** → a note in `resources/`, in the house format.
+**Kept** → a note in `resources/`, in the house format, **plus a visual explainer**
+at `resources/explainers/NN-<slug>.html` — a single self-contained page answering
+*what is this for?* Six fixed sections, built for scanning rather than reading.
+Section 03, "How much to believe it," is non-negotiable: a polished visual page
+makes weak evidence feel strong, and the evidence strip is the counterweight.
 **Ignored** → one line in [`resources/REJECTED.md`](resources/REJECTED.md) with
 the reason and date. Rejection is a decision worth recording; without it you
 re-litigate the same link in three months.
