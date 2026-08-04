@@ -7,7 +7,7 @@
 
 The foundation for a **long-horizon runner** — a harness for work that outlives
 a single context window. This lesson builds the parts;
-[projects/](../../../projects/README.md) assembles them.
+[lab/](../../../lab/README.md) assembles them.
 
 Long-running agent work fails in three distinct ways, and they need three
 different mechanisms. Conflating them is what "trying to handle too much at

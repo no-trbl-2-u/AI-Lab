@@ -15,7 +15,7 @@
 | **Applicability** | Stated: one principal, one long-lived instance, weeks-to-months horizon, auditability valued over throughput. `inferred`: does not obviously transfer to multi-tenant or high-volume systems; the ~2000-token context budget is tuned to this workload; presumes you control the runtime. |
 | **Cost** | Stated: ~62,000 lines of Gleam across 125 files, ~1,500 tests, a BEAM runtime, 41.3 MB JSONL in 19 operating days **growing monotonically with untested long-term scalability**. `inferred`: the real cost is that this is an entire runtime, not a library — no incremental adoption path. You take the architecture or you take ideas out of it. |
 | **Conflicts** | Sharp tension with [09](09-manus-context-engineering.md) §KV-cache — a live clock and rotating vitals injected every cycle is maximal prefix volatility, and the paper never mentions caching. Agrees with and extends [12](12-long-horizon-control.md) §guards-must-be-code. Extends [14](14-memory-architecture.md) with outcome-weighted retrieval and time-decayed confidence, both absent there. Partial tension with [08](08-dont-build-multi-agents.md) — deep delegation with teams, but depth-capped. |
-| **So what** | Four portable ideas needing none of the runtime: read-time confidence decay, utility-weighted retrieval, sub-agents barred from the operator channel, and an always-on self-state block. **Falsifier:** if a per-cycle self-state block degrades cache hit rate and cost without improving outcomes on our eval set, it isn't worth it here — measurable in lesson 07. |
+| **So what** | gap: **G9** (retrieval), **G10** (persistence/supervision); contributes to **G5** (long-horizon). Four portable ideas needing none of the runtime: read-time confidence decay, utility-weighted retrieval, sub-agents barred from the operator channel, and an always-on self-state block. **Falsifier:** if a per-cycle self-state block degrades cache hit rate and cost without improving outcomes on our eval set, it isn't worth it here — measurable in lesson 07. |
 
 ## Why it matters
 
@@ -146,7 +146,7 @@ GIL, advisory exception handling, no supervision model.
 → [Lesson 05 — memory](../workshop/lessons/05-memory/README.md) (decay,
 utility-weighted promotion) · [Lesson 03 — guards](../workshop/lessons/03-deterministic-guards/README.md)
 (axiom trails) · [Lesson 07 — meta-eval](../workshop/lessons/07-meta-eval/README.md)
-(the sensorium/cache falsifier) · [projects/ — long-horizon runner](../projects/README.md)
+(the sensorium/cache falsifier) · [lab/ — long-horizon runner](../lab/README.md)
 
 ## Related
 

@@ -88,7 +88,7 @@ injected instruction can execute rather than just call a fixed-schema tool.
 
 ## Where it lands
 
-→ [projects/ — MCP-as-code](../projects/README.md)
+→ [lab/ — MCP-as-code](../lab/README.md)
 
 ## Related
 

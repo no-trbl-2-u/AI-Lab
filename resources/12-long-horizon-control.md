@@ -106,4 +106,4 @@ from memory — is the same mechanism at session scope.
 ## Where it lands
 
 → Lesson [08](../workshop/lessons/08-long-horizon/README.md);
-[projects/ — long-horizon runner](../projects/README.md).
+[lab/ — long-horizon runner](../lab/README.md).
