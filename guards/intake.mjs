@@ -83,6 +83,39 @@ for (const note of notes) {
     }
   }
 
+  // 3c. explainer — every note that came through the gate has a visual first-contact page
+  if (!grandfathered.has(note)) {
+    const explainer = join(RES, 'explainers', note.replace(/\.md$/, '.html'));
+    if (!existsSync(explainer)) {
+      fail.push(
+        `resources/${note} has no explainer — expected ` +
+          `resources/explainers/${note.replace(/\.md$/, '.html')}. /intake phase 5 was skipped.`
+      );
+    } else {
+      const html = readFileSync(explainer, 'utf8');
+      // the evidence section is the counterweight to a polished page; it is never optional
+      if (!/How much to believe it/i.test(html)) {
+        fail.push(
+          `resources/explainers/${note.replace(/\.md$/, '.html')} is missing the ` +
+            `"How much to believe it" section — the evidence strip is non-negotiable`
+        );
+      }
+      // Self-contained: no external SUBRESOURCES. An <a href> to the source paper is
+      // fine — it costs nothing until clicked. Only src= and <link href=> fetch on load.
+      const ext = [
+        ...html.matchAll(/\bsrc\s*=\s*["'](?:https?:)?\/\//gi),
+        ...html.matchAll(/<link\b[^>]*\bhref\s*=\s*["'](?:https?:)?\/\//gi),
+        ...html.matchAll(/@import\s+(?:url\()?["']?(?:https?:)?\/\//gi),
+      ];
+      if (ext.length) {
+        fail.push(
+          `resources/explainers/${note.replace(/\.md$/, '.html')} makes ${ext.length} ` +
+            `external request(s) — explainers must open from disk with no network`
+        );
+      }
+    }
+  }
+
   // 3b. the eight points — required only for notes that came through /intake.
   // Grandfathered notes predate the schema; that debt is tracked, not hidden.
   if (!grandfathered.has(note)) {
