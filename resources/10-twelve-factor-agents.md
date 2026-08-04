@@ -62,4 +62,4 @@ where reliability goes to die.
 
 ## Where it lands
 
-→ [Lesson 08 — long-horizon control](../workshop/lessons/08-long-horizon/README.md); [projects/ — own-loop primer](../projects/README.md)
+→ [Lesson 08 — long-horizon control](../workshop/lessons/08-long-horizon/README.md); [lab/ — own-loop primer](../lab/README.md)

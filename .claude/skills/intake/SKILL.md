@@ -63,10 +63,15 @@ is itself information**, usually about how far you can trust it.
    the wider field. A new contradiction is worth more than a new agreement —
    the pool's existing tensions (01 vs. 08, 09 §5 vs. 10 §factor-9) are
    load-bearing.
-8. **So what** — what we would do differently if this is true, and **what
-   observation would show it's wrong here.** The second half is what
-   `/decompose-resource` turns into a phase's failing check. An article with no
-   answer to it is reference material, not actionable.
+8. **So what** — three parts: **the gap it touches** (an ID from
+   [`GAPS.md`](../../../GAPS.md), or `none — reference`), what we'd do
+   differently if it's true, and **what observation would show it's wrong here.**
+
+   The gap ID is what keeps the pool from becoming a shelf of interesting
+   things — a resource that touches no gap is still keepable, but only as
+   reference, and saying so out loud is the whole point. The falsifier is what
+   `/decompose-resource` turns into a phase's failing check; an article with no
+   answer to it is not actionable.
 
 ### Integrity rule
 
@@ -188,7 +193,7 @@ node guards/intake.mjs
 | **Applicability** | holds: <…> · not: <…> `inferred` |
 | **Cost** | <tokens / latency / complexity / maintenance> |
 | **Conflicts** | <note § — nature of conflict> |
-| **So what** | <what we'd do> · falsifier: <what would show it's wrong here> |
+| **So what** | gap: <G-id or `none — reference`> · <what we'd do> · falsifier: <what would show it's wrong here> |
 
 ## Why it matters
 <one paragraph — the reason it's in this repo, not a summary>

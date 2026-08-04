@@ -63,7 +63,7 @@ This is the resource most directly about wording.
 
 ## Where it lands
 
-→ [projects/](../projects/README.md) — reference only
+→ [lab/](../lab/README.md) — reference only
 
 ## Related
 
