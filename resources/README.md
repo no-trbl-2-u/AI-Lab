@@ -50,6 +50,7 @@ Sound, but they cover ground you already have or aren't currently working in.
 | 05 | [Agent Skills](05-agent-skills-progressive-disclosure.md) | you already write trigger-shaped descriptions |
 | 07 | [Multi-agent research system](07-multi-agent-research-system.md) | orchestration already works in `/rules-audit` |
 | 08 | [Don't build multi-agents](08-dont-build-multi-agents.md) | ditto — keep for the two principles |
+| 16 | [F1 agentic data ops](16-f1-agentic-data-ops.md) | vendor case study, self-reported numbers — kept for the 07/08 and 11 data points, not new mechanism |
 
 ## The through-line
 
