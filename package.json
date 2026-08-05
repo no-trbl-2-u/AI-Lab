@@ -1,0 +1,18 @@
+{
+  "name": "ai-lab",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Harness engineering lab — guards for the resource pool and skill contracts.",
+  "scripts": {
+    "guard": "node guards/okf.mjs && node guards/intake.mjs && node guards/skill-contract.mjs",
+    "guard:okf": "node guards/okf.mjs",
+    "guard:okf:fixtures": "node guards/okf.mjs --fixtures",
+    "guard:intake": "node guards/intake.mjs",
+    "guard:skills": "node guards/skill-contract.mjs"
+  },
+  "dependencies": {
+    "yaml": "^2.6.1",
+    "zod": "^3.24.1"
+  }
+}
