@@ -178,7 +178,11 @@ they don't repeat the prose-only mistake this repo exists to fix.
 3. **`/reinforce`** — searches a note's *weak points*, not its topic: who
    measured what this asserted, who solves the same problem differently, who
    holds the other side of an unresolved conflict, and whether anyone has run
-   the falsifier. Outputs candidates to a queue, never notes. **Not built.**
+   the falsifier. Outputs candidates to a queue, never notes. **Built** —
+   [skill](.claude/skills/reinforce/SKILL.md), [queue](resources/queue/README.md),
+   `guards/reinforce.mjs`. Not yet run against a real note; the axes are
+   specified but unproven, which is [phase 02](lab/reinforce/phases/02.md)'s
+   stage-5 question.
 4. **`/decompose-resource`** — after 3–4 real intakes, when you know what a delta
    actually looks like. **Not built.**
 5. **`/phase-overview`** — last. You won't know what "too big" feels like until a

@@ -5,10 +5,12 @@
   "type": "module",
   "description": "Harness engineering lab — guards for the resource pool and skill contracts.",
   "scripts": {
-    "guard": "npm run guard:okf && npm run guard:okf:fixtures && npm run guard:intake",
+    "guard": "npm run guard:okf && npm run guard:okf:fixtures && npm run guard:intake && npm run guard:reinforce && npm run guard:reinforce:fixtures",
     "guard:okf": "node guards/okf.mjs",
     "guard:okf:fixtures": "node guards/okf.mjs --fixtures",
     "guard:intake": "node guards/intake.mjs",
+    "guard:reinforce": "node guards/reinforce.mjs",
+    "guard:reinforce:fixtures": "node guards/reinforce.mjs --fixtures",
     "guard:skill": "node guards/skill-contract.mjs"
   },
   "dependencies": {

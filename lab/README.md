@@ -32,6 +32,16 @@ This one didn't wait on `workshop/` — it doesn't extend a harness layer, it's
 a decomposition procedure for skills themselves, so it stood on its own gap
 (G11, `stated`) rather than a resource delta.
 
+### [`/reinforce`](reinforce/PRD.md)
+Pipeline build-order item #3 — the stage that searches an existing note's weak
+points rather than its topic, and the terminating action for `CLAUDE.md`'s
+knowledge-layer rule. Queue, guard, and skill are built; the four axes are
+specified but have never been run against a real note, which is the open
+question in [phase 02](reinforce/phases/02.md).
+
+Cut from `PIPELINE.md`'s build order rather than from a gap — a gap is something
+*you* can't do, and this was a missing stage in the pipeline itself.
+
 ## Queued
 
 ### Long-horizon runner

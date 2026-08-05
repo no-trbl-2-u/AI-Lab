@@ -2,7 +2,12 @@
 
 Three phases. Each is independently useful and each can fail.
 
-**Current position:** planned, nothing built.
+**Current position:** phases 01 and 03 built; phase 02 built but **unproven**.
+
+The queue, its guard, the skill, and both entry modes exist. What has *not*
+happened is a real run against a real note — so the four axes are specified and
+untested, and the claim that weak-point search beats topic search is still a
+claim. That's phase 02's stage-5 question and it needs a session, not a commit.
 
 ```
 01  queue format + guard          ← no searching; pure structure. Start here.
