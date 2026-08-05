@@ -5,7 +5,8 @@ is understanding, not artifacts** — a phase completed without understanding is
 failed phase regardless of whether the code works.
 
 [`GAPS.md`](GAPS.md) is the spine. [`PIPELINE.md`](PIPELINE.md) is how material
-becomes work.
+becomes work. [`ROADMAP.md`](ROADMAP.md) is the generated "what's next" view —
+**never edit it**; edit its sources and run `npm run roadmap`.
 
 ---
 
@@ -75,6 +76,7 @@ wearing a new hat.
 | Every phase declares a failing check | **code** — `guards/skill-contract.mjs` | loud |
 | Notes are OKF, gaps and conflicts resolve | **code** — `guards/okf.mjs` | loud |
 | Candidates name a target, queue decays | **code** — `guards/reinforce.mjs` | loud |
+| `ROADMAP.md` agrees with its sources | **code** — `tools/roadmap.mjs --check` | loud |
 | Nothing enters `resources/` but through `/intake` | **harness** — skill gate | loud-ish |
 | **Check `resources/` before answering** | **prose** | **silent** |
 | **Capture the prediction before explaining** | **prose** | **silent** |
