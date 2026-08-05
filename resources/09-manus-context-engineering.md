@@ -1,7 +1,31 @@
-# 09 — Context Engineering for AI Agents: Lessons from Building Manus
+---
+type: Resource
+id: 9
+title: "Context Engineering for AI Agents: Lessons from Building Manus"
+description: "Production context engineering is mostly cache economics: keep the prefix stable, recite the goal, and leave errors in."
+origin: external
+resource: https://manus.im/blog/Context-Engineering-for-AI-Agents-Lessons-from-Building-Manus
+tags:
+  - kv-cache
+  - prefix-stability
+  - recitation
+  - error-retention
+  - context-engineering
+tier: core
+status: stable
+published: 2025-07
+conflicts:
+  - note: 10
+    section: factor-9
+    nature: "Lesson 5 (keep errors in) against factor 9 (compact errors into the window). Synthesis: keep the fact and shape of the error, compact its volume."
+verified: []
+generated:
+  by: claude/notes-0.1
+  at: 2026-08-03T00:00:00Z
+sources: []
+---
 
-**Source:** Manus — <https://manus.im/blog/Context-Engineering-for-AI-Agents-Lessons-from-Building-Manus>
-**Published:** 2025-07
+# 09 — Context Engineering for AI Agents: Lessons from Building Manus
 
 ## Why it matters
 

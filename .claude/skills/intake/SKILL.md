@@ -33,6 +33,11 @@ Every resource gets explained against the same schema. Fixed, so notes are
 comparable and so gaps become visible — **a point the article doesn't address
 is itself information**, usually about how far you can trust it.
 
+Four of the eight land in the note's YAML frontmatter (`evidence`, `conflicts`,
+and `So what`'s gap and falsifier) because downstream tooling reads them as
+data — `/reinforce` searches a note's weak points by looking them up rather than
+by parsing prose. The other four stay in the body table. See § House format.
+
 ### What it says
 
 1. **Thesis** — the claim, in one sentence. If it takes three, say so; an
@@ -171,16 +176,51 @@ Don't hedge into "it depends." If the evidence is mixed, say which way you lean.
 Then:
 
 ```bash
-node guards/intake.mjs
+npm run guard
 ```
+
+That runs the OKF schema check, its fixtures, and the intake-residue check.
+Neither guard enforces the eight points alone — `okf.mjs` holds the four
+frontmatter fields and `intake.mjs` holds the six body rows — so a green run
+means both halves are present.
 
 ### House format
 
-```markdown
-# NN — <Title>
+Notes are [OKF](https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/main/okf/SPEC.md)
+documents: YAML frontmatter, then the body. The eight points are split across
+the two by **query pattern** — you filter on evidence, gap, falsifier and
+conflicts, and you read the rest. Nothing appears in both places.
 
-**Source:** <author/org> — <url>
-**Published:** YYYY-MM-DD   (or **Read:** YYYY-MM if undated)
+```markdown
+---
+type: Resource                  # OKF: the only field OKF itself requires
+id: <NN>                        # must match the filename
+title: <Title>
+description: <the thesis, compressed to one sentence>
+origin: external                # external | synthesis | original
+resource: <url>                 # required when origin is external
+tags: [<the resource's own vocabulary — this is the search surface>]
+tier: core                      # core | extraction | reference
+status: stable                  # draft | stable | deprecated
+published: YYYY-MM-DD           # or `read: YYYY-MM` if undated
+evidence:
+  tier: asserted                # measured | asserted | anecdotal | none
+  n: <sample size, or omit>
+  summary: <numbers and conditions — not just a restatement of the tier>
+gap: <G-id, or `none — reference`>
+falsifier: <what observation would show it's wrong here>
+conflicts:
+  - note: <NN>
+    section: <section>
+    nature: <the nature of the disagreement>
+verified: []                    # stage-5 records land here; empty is honest
+generated:
+  by: claude/intake-0.1         # OKF actor: <producer>/<version> | human:<id>
+  at: <ISO-8601>
+sources: []                     # required non-empty when origin isn't external
+---
+
+# NN — <Title>
 
 ## In brief
 
@@ -189,11 +229,9 @@ node guards/intake.mjs
 | **Thesis** | <one sentence> |
 | **Problem** | <what breaks without it> |
 | **Mechanism** | <the actual move> |
-| **Evidence** | `measured`/`asserted`/`anecdotal`/`none` — <numbers, conditions> |
 | **Applicability** | holds: <…> · not: <…> `inferred` |
 | **Cost** | <tokens / latency / complexity / maintenance> |
-| **Conflicts** | <note § — nature of conflict> |
-| **So what** | gap: <G-id or `none — reference`> · <what we'd do> · falsifier: <what would show it's wrong here> |
+| **Implication** | <what we'd do differently if it's true> |
 
 ## Why it matters
 <one paragraph — the reason it's in this repo, not a summary>

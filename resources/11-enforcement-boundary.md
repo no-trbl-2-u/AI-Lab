@@ -1,3 +1,37 @@
+---
+type: Resource
+id: 11
+title: The enforcement boundary
+description: Every rule sits in exactly one enforcement tier — prose, harness, or code — and only the bottom two hold without the model's cooperation.
+origin: synthesis
+tags:
+  - enforcement
+  - hooks
+  - permissions
+  - prose-vs-code
+  - harness-layers
+tier: core
+status: stable
+published: 2026-08
+conflicts: []
+verified: []
+generated:
+  by: claude/notes-0.1
+  at: 2026-08-03T00:00:00Z
+sources:
+  - id: claude-code-surfaces
+    title: Claude Code's hook and permission surfaces
+  - id: note-02
+    resource: /resources/02-agent-harness-engineering.md
+    title: Agent harness engineering — hook-based enforcement
+  - id: note-10
+    resource: /resources/10-twelve-factor-agents.md
+    title: 12-Factor Agents — factor 8
+  - id: note-12
+    resource: /resources/12-long-horizon-control.md
+    title: Long-horizon control — the failed runner
+---
+
 # 11 — The enforcement boundary
 
 **Type:** synthesis. No single source — assembled from Claude Code's hook and

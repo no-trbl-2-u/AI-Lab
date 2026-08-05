@@ -1,7 +1,37 @@
-# 16 — From Weeks to Minutes: How F1 Uses Agentic AI on AWS
+---
+type: Resource
+id: 16
+title: "From Weeks to Minutes: How F1 Uses Agentic AI on AWS"
+description: F1 cut data-source onboarding from 6–8 weeks to ~40 minutes by having one agent with modular skills draft artifacts as PRs that engineers approve.
+origin: external
+resource: https://aws.amazon.com/blogs/machine-learning/from-weeks-to-minutes-how-formula-1-uses-agentic-ai-on-aws-to-accelerate-data-operations/
+tags:
+  - production-case-study
+  - enforcement
+  - pr-gate
+  - data-ops
+  - single-agent
+tier: reference
+status: stable
+published: "2026"
+read: 2026-08
+evidence:
+  tier: asserted
+  summary: Self-reported by two named F1/AWS stakeholders in a vendor blog. No A/B test, no baseline methodology, no disclosed PR rework rate, and no definition of "task" behind the 95%-autonomous figure.
+gap: G2/G3
+falsifier: A disclosed high PR-rework rate, which would collapse the 95%/99% claims into "we still do the work, just review AI-drafted boilerplate".
+conflicts:
+  - note: 7
+    section: multi-agent
+    nature: F1's production choice is a single agent with modular skills, not multi-agent orchestration — landing on 08's side for a case that could plausibly have gone either way.
+verified: []
+generated:
+  by: claude/notes-0.1
+  at: 2026-08-03T00:00:00Z
+sources: []
+---
 
-**Source:** AWS Machine Learning Blog (Formula 1 + AWS engineers) — <https://aws.amazon.com/blogs/machine-learning/from-weeks-to-minutes-how-formula-1-uses-agentic-ai-on-aws-to-accelerate-data-operations/>
-**Published:** 2026 (exact date not stated on page; read 2026-08)
+# 16 — From Weeks to Minutes: How F1 Uses Agentic AI on AWS
 
 ## In brief
 
@@ -10,11 +40,9 @@
 | **Thesis** | F1 cut new-MarTech-data-source onboarding from 6–8 weeks to ~40 minutes of code generation by having a Bedrock AgentCore agent draft config/pipeline/governance artifacts as PRs that engineers approve. |
 | **Problem** | Manual schema mapping, pipeline building, and GDPR tagging created an 18-month backlog for 12 sources; undocumented upstream schema drift broke pipelines mid-race-weekend with no unified lineage to debug from. |
 | **Mechanism** | One agent (not a swarm) with modular "skill" definitions (schema mapping, DQ, governance, PII classification) reads a BRD, opens a PR + Jira ticket, then on approval opens three more linked PRs (infra, DBT, governance). A separate event-driven agent watches for schema drift and proposes fix PRs. Enforcement is structural: agents can only open PRs, never merge; short-lived (1hr) scoped tokens; VPC isolation; all model access routed through an internal AI Gateway for audit. |
-| **Evidence** | `asserted` — self-reported by two named F1/AWS stakeholders in a vendor blog. No A/B test, no baseline methodology, no disclosed PR rework/rejection rate, no definition of "task" behind the 95%-autonomous figure. |
 | **Applicability** | holds: template-shaped, code-generation-style work in an org that already has PR review culture, IaC repos, and least-privilege tooling built · not: ambiguous specs, orgs without that scaffolding already in place `inferred` |
 | **Cost** | No tokens/latency/$ disclosed anywhere. Build: one developer, 4 months PoC→production. Standing: every PR still needs human review — the bottleneck moved, didn't vanish — plus uncosted AI Gateway and context-graph authoring. |
-| **Conflicts** | 07 vs. 08 — F1's actual production choice is a single agent with modular skills, not multi-agent orchestration, landing on 08's side for a case that could plausibly have gone either way · 11 — first resource in the pool that's a production deployment rather than an essay, and its entire safety story is infra-tier (scoped tokens, VPC, structural no-merge-permission), not prose asking the agent to behave |
-| **So what** | gap: G2/G3 (both already ready-now without this) · treat "agent can only open a PR, never merge" as a concrete, cheap enforcement-boundary implementation — no hook required, the gate is structural · falsifier: a disclosed high PR-rework rate would collapse the 95%/99% claims into "we still do the work, just review AI-drafted boilerplate" |
+| **Implication** | Treat "agent can only open a PR, never merge" as a concrete, cheap enforcement-boundary implementation — no hook required, the gate is structural. |
 
 ## Why it matters
 

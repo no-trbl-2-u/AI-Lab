@@ -248,14 +248,17 @@ function readmeTiers() {
     [/^## Extraction/m, 'extraction'],
     [/^## Reference/m, 'reference'],
   ];
-  // slice the file at each tier heading, attribute every note link in that slice
+  // Slice the file at each tier heading, then read only the *table rows* in
+  // that slice — a note number in the leading cell. Matching every link instead
+  // picks up incidental prose references ("see [11](...)") that fall in some
+  // other tier's slice and silently overwrite the real answer.
   const marks = headings
     .map(([re, tier]) => ({ tier, idx: src.search(re) }))
     .filter((m) => m.idx >= 0)
     .sort((a, b) => a.idx - b.idx);
   for (let i = 0; i < marks.length; i++) {
     const slice = src.slice(marks[i].idx, marks[i + 1]?.idx ?? src.length);
-    for (const m of slice.matchAll(/\((\d\d)-[^)]+\.md\)/g)) {
+    for (const m of slice.matchAll(/^\|\s*(\d\d)\s*\|/gm)) {
       map.set(Number(m[1]), marks[i].tier);
     }
   }

@@ -63,7 +63,10 @@ never a maybe. Five phases, and the ordering is the methodology — skim, captur
 the reader's delta, *then* explain. See
 [`.claude/skills/intake/SKILL.md`](.claude/skills/intake/SKILL.md).
 
-**Kept** → a note in `resources/` in the house format, **plus** a visual
+**Kept** → a note in `resources/` in the house format — an
+[OKF](https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/main/okf/SPEC.md)
+document whose frontmatter holds the four points downstream tooling reads as
+data (`evidence`, `conflicts`, `gap`, `falsifier`) — **plus** a visual
 explainer at `resources/explainers/NN-<slug>.html` — six fixed sections, built
 for scanning. Section 03, "How much to believe it," is non-negotiable: a polished
 page makes weak evidence feel strong, and the evidence strip is the counterweight.

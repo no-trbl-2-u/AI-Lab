@@ -1,7 +1,30 @@
-# 03 — Code Execution with MCP: Building More Efficient Agents
+---
+type: Resource
+id: 3
+title: "Code Execution with MCP: Building More Efficient Agents"
+description: Have the agent write code against generated tool APIs instead of calling tools directly, so catalogues live on disk rather than in context.
+origin: external
+resource: https://www.anthropic.com/engineering/code-execution-with-mcp
+tags:
+  - mcp
+  - code-execution
+  - tool-design
+  - context-reduction
+tier: reference
+status: stable
+published: 2025-11-04
+conflicts:
+  - note: 4
+    section: tool consolidation
+    nature: Cuts against 04's "consolidate related operations into one tool", but only superficially — 04 is about the tool-call interface, here consolidation happens in the agent's own code.
+verified: []
+generated:
+  by: claude/notes-0.1
+  at: 2026-08-03T00:00:00Z
+sources: []
+---
 
-**Source:** Anthropic Engineering — <https://www.anthropic.com/engineering/code-execution-with-mcp>
-**Published:** 2025-11-04
+# 03 — Code Execution with MCP: Building More Efficient Agents
 
 ## Why it matters
 

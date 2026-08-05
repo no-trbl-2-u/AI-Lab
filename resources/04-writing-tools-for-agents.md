@@ -1,6 +1,29 @@
-# 04 — Writing Effective Tools for AI Agents
+---
+type: Resource
+id: 4
+title: Writing Effective Tools for AI Agents
+description: Tools are an interface designed for a model, and most tool sets fail on ambiguity rather than capability.
+origin: external
+resource: https://www.anthropic.com/engineering/writing-tools-for-agents
+tags:
+  - tool-design
+  - mcp-authoring
+  - agent-ergonomics
+tier: reference
+status: stable
+read: 2026-08
+conflicts:
+  - note: 3
+    section: code execution
+    nature: Consolidation via tool design vs. composition via generated code. Small stable tool sets favour consolidation; large sprawling ones favour code execution.
+verified: []
+generated:
+  by: claude/notes-0.1
+  at: 2026-08-03T00:00:00Z
+sources: []
+---
 
-**Source:** Anthropic Engineering — <https://www.anthropic.com/engineering/writing-tools-for-agents>
+# 04 — Writing Effective Tools for AI Agents
 
 ## Why it matters
 

@@ -1,6 +1,30 @@
-# 10 — 12-Factor Agents
+---
+type: Resource
+id: 10
+title: 12-Factor Agents
+description: "Reliable agents are mostly ordinary software: own your control flow, own your prompts, cap retries, keep state outside the loop."
+origin: external
+resource: https://github.com/humanlayer/12-factor-agents
+tags:
+  - agent-loop
+  - control-flow
+  - stateless-reducer
+  - retries
+tier: core
+status: stable
+read: 2026-08
+conflicts:
+  - note: 9
+    section: kv-cache
+    nature: Factor 12 (stateless reducer) sits awkwardly with append-only KV-cache advice — replaying a reduced state rebuilds a prefix that may not be byte-identical. Worth measuring.
+verified: []
+generated:
+  by: claude/notes-0.1
+  at: 2026-08-03T00:00:00Z
+sources: []
+---
 
-**Source:** HumanLayer (Dex Horthy) — <https://github.com/humanlayer/12-factor-agents>
+# 10 — 12-Factor Agents
 
 ## Why it matters
 

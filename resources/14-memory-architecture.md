@@ -1,3 +1,33 @@
+---
+type: Resource
+id: 14
+title: Memory architecture
+description: Memory partitioned by responsibility, with declared writers and scoped reads, beats a single undifferentiated store.
+origin: synthesis
+tags:
+  - memory
+  - partitioning
+  - scoped-reads
+  - residue
+  - prior-art
+tier: extraction
+status: stable
+published: 2026-08
+conflicts: []
+verified: []
+generated:
+  by: claude/notes-0.1
+  at: 2026-08-03T00:00:00Z
+sources:
+  - id: work-system
+    title: A proprietary production memory system
+    author: human:no-trbl-2-u
+  - id: board-brainstorm
+    resource: https://github.com/no-trbl-2-u/board-brainstorm
+    title: board-brainstorm's residue discipline
+    author: human:no-trbl-2-u
+---
+
 # 14 — Memory architecture
 
 **Type:** prior art alongside an existing production design. Published sources

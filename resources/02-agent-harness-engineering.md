@@ -1,7 +1,31 @@
-# 02 — Agent Harness Engineering
+---
+type: Resource
+id: 2
+title: Agent Harness Engineering
+description: The harness around the model — hooks, loops, contracts — determines agent reliability more than the model does.
+origin: external
+resource: https://addyosmani.com/blog/agent-harness-engineering/
+tags:
+  - harness-design
+  - hooks
+  - ralph-loop
+  - sprint-contracts
+  - ratchet
+tier: core
+status: stable
+read: 2026-08
+conflicts:
+  - note: 8
+    section: multi-agent
+    nature: "The Planner/Generator/Evaluator split is a multi-agent architecture. Reconciliation: role separation for verification is safe, for construction is dangerous."
+verified: []
+generated:
+  by: claude/notes-0.1
+  at: 2026-08-03T00:00:00Z
+sources: []
+---
 
-**Source:** Addy Osmani — <https://addyosmani.com/blog/agent-harness-engineering/>
-**Read:** 2026-08
+# 02 — Agent Harness Engineering
 
 ## Why it matters
 
