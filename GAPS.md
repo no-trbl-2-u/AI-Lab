@@ -161,6 +161,24 @@ strategies, and replay-based state recovery are `unknown`.
 
 ---
 
+### G11 — No systematic way to decompose a large task into small, testable, modular skills
+`stated` · **ready now** · → [lab/modular-skill-composition](lab/modular-skill-composition/PRD.md)
+
+Large tasks get planned as one long prose runbook or one big skill, not as a set
+of small skills that each do one thing, declare their inputs/outputs, and carry
+their own failing check. There's no shared contract for what "modular" means
+here, and no procedure for splitting a task along those seams instead of
+arbitrary ones.
+
+**Evidence it's real:** you asked directly for "a lab where we plan a large
+task and decompose it into small, testable, modular skills."
+
+**Closed when:** a `/decompose-task` skill exists, every skill spec it produces
+passes a mechanical contract check, and it's been run on a real task in this
+repo with the output compared against a hand-written decomposition.
+
+---
+
 ## Not gaps — confirmed strengths
 
 Recorded so they don't get re-litigated, and so labs don't get built for things
