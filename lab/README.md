@@ -13,9 +13,24 @@ lab/<name>/
   phases/NN.md  one per phase, each with its own failing check
 ```
 
-Nothing lives here yet — `workshop/` has to run first, because every lab below
-assumes layers it builds. The entries below are hand-written placeholders and
-should be replaced by real decompositions once `/decompose-resource` exists.
+The entries under **Queued** are hand-written placeholders and should be
+replaced by real decompositions once `/decompose-resource` exists — every lab
+below assumes layers `workshop/` builds.
+
+## Active
+
+### [Modular skill composition](modular-skill-composition/PRD.md)
+Closes [G11](../GAPS.md) — no systematic way to decompose a large task into
+small, testable, modular skills. Phase 1 is done: a skill-unit contract
+(`workshop/spec/skill-contract.md`) and a guard
+(`guards/skill-contract.mjs`) that checks a skill spec for single
+responsibility, explicit inputs/outputs/composition, and a real failing
+check. Phases 2–3 (a `/decompose-task` skill, then dogfooding it on the
+long-horizon runner below) are queued.
+
+This one didn't wait on `workshop/` — it doesn't extend a harness layer, it's
+a decomposition procedure for skills themselves, so it stood on its own gap
+(G11, `stated`) rather than a resource delta.
 
 ## Queued
 
