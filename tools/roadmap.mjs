@@ -52,8 +52,14 @@ function gaps() {
         /·\s*(needs [^·]+)/i.exec(metaLine)?.[1]?.trim() ??
         /·\s*(not urgent|low priority)/i.exec(metaLine)?.[1]?.trim() ??
         '—',
+      // "→ [lesson 00](path)" is the common form, but some gaps point at
+      // something with no file yet ("→ `/brainstorm` (build order #6)").
+      // Render those as text rather than dropping the destination entirely.
       link: /→ \[([^\]]+)\]\(([^)]+)\)/.exec(metaLine)?.[2] ?? null,
-      linkText: /→ \[([^\]]+)\]\(([^)]+)\)/.exec(metaLine)?.[1] ?? null,
+      linkText:
+        /→ \[([^\]]+)\]\(([^)]+)\)/.exec(metaLine)?.[1] ??
+        /→\s*(.+?)\s*$/.exec(metaLine)?.[1] ??
+        null,
     });
   }
 
@@ -124,7 +130,51 @@ function labs() {
   return out;
 }
 
-/** workshop/lessons — the curriculum. Fixed sequence, separate track from labs. */
+/**
+ * lab/README.md's Queued section — labs that are committed to but have no
+ * directory yet, so labs() above cannot see them. Without this they are
+ * invisible in the one view that claims to answer "what's next".
+ */
+function queuedLabs() {
+  const src = read('lab/README.md');
+  const section = src.split(/^## Queued\s*$/m)[1]?.split(/^## Adding a lab/m)[0] ?? '';
+  const unlink = (s) => s.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1').trim();
+  const out = [];
+  for (const block of section.split(/^### /m).slice(1)) {
+    const lines = block.split('\n');
+    // First prose line is the summary. Links there are relative to lab/, and
+    // this file sits at the root — strip them rather than emit broken paths.
+    // Take the whole first paragraph, not the first line — these files are
+    // hard-wrapped, so a line boundary cuts mid-sentence.
+    const para = [];
+    for (const l of lines.slice(1)) {
+      if (!l.trim()) {
+        if (para.length) break;
+        continue;
+      }
+      para.push(l.trim());
+    }
+    const joined = unlink(para.join(' '));
+    // One sentence, unless it's a stub like "The real target." — then take two,
+    // since a summary that carries no information is worse than a long one.
+    let summary = /^(.+?[.?!])(\s|$)/.exec(joined)?.[1] ?? joined;
+    if (summary.length < 40) {
+      summary = /^(.+?[.?!]\s+.+?[.?!])(\s|$)/.exec(joined)?.[1] ?? summary;
+    }
+
+    out.push({
+      title: lines[0].trim(),
+      summary,
+      blocked: (() => {
+        const m = /Blocked on:?\s*([^\n]+)/.exec(block);
+        return m ? unlink(m[1]) : null;
+      })(),
+    });
+  }
+  return out;
+}
+
+// workshop/lessons — the curriculum. Fixed sequence, separate track from labs.
 function lessons() {
   const dir = join(ROOT, 'workshop', 'lessons');
   if (!existsSync(dir)) return [];
@@ -168,6 +218,7 @@ function render() {
   const { open, closed } = gaps();
   const build = buildOrder();
   const lab = labs();
+  const queued = queuedLabs();
   const lesson = lessons();
   const debt = poolDebt();
 
@@ -199,7 +250,7 @@ function render() {
     L.push('| Gap | What you can\'t do | Provenance | Lands in |');
     L.push('|---|---|---|---|');
     for (const g of ready) {
-      const where = g.link ? `[${g.linkText}](${g.link})` : '—';
+      const where = g.link ? `[${g.linkText}](${g.link})` : (g.linkText ?? '—');
       L.push(`| **${g.id}** | ${g.title} | \`${strongest(g)}\` | ${where} |`);
     }
   }
@@ -236,6 +287,19 @@ function render() {
     L.push('| Lab | Phases | Current position |');
     L.push('|---|---|---|');
     for (const l of lab) L.push(`| [${l.name}](lab/${l.name}/PRD.md) | ${l.phases} | ${l.position} |`);
+  }
+  L.push('');
+
+  // --- queued labs
+  L.push('## Queued labs');
+  L.push('');
+  L.push('Committed to, no directory yet. From `lab/README.md`.');
+  L.push('');
+  if (!queued.length) L.push('*Nothing queued.*');
+  else {
+    L.push('| Lab | What it is | Blocked on |');
+    L.push('|---|---|---|');
+    for (const q of queued) L.push(`| ${q.title} | ${q.summary} | ${q.blocked ?? '—'} |`);
   }
   L.push('');
 

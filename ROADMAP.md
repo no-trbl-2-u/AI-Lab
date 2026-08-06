@@ -18,6 +18,8 @@ hypotheses and unverified. Build against the top of that order.
 | **G2** | Hooks: know they exist, haven't built with them | `stated` | [lesson 02](workshop/lessons/02-hooks/README.md) |
 | **G6** | Cost mechanics are unmeasured | `inferred` | [lesson 07 §3](workshop/lessons/07-meta-eval/README.md) |
 | **G11** | No systematic way to decompose a large task into small, testable, modular skills | `stated` | [lab/modular-skill-composition](lab/modular-skill-composition/PRD.md) |
+| **G12** | Ideas don't become gaps; they become code or they evaporate | `observed` | `/brainstorm` (PIPELINE build order #6) |
+| **G14** | The resource pool has never been verified | `observed` | — |
 
 ## Blocked
 
@@ -25,6 +27,7 @@ hypotheses and unverified. Build against the top of that order.
 |---|---|---|
 | **G4** | Measurement discipline has never been pointed at the workspace | needs G1–G3 first |
 | **G5** | Long-horizon work: no way to enforce scope or completion from outside the loop | needs G2 + G4 |
+| **G13** | No external check on scope; over-engineering is self-reported | needs G12 first |
 
 ## Also open
 
@@ -43,6 +46,18 @@ hypotheses and unverified. Build against the top of that order.
 | [modular-skill-composition](lab/modular-skill-composition/PRD.md) | 3 | Phase 1 — done. Phases 2–3 not started. |
 | [reinforce](lab/reinforce/PRD.md) | 3 | phases 01 and 03 built; phase 02 built but unproven. |
 
+## Queued labs
+
+Committed to, no directory yet. From `lab/README.md`.
+
+| Lab | What it is | Blocked on |
+|---|---|---|
+| Long-horizon runner | The real target. A harness for work that outlives a single context window — contracts as predicates, a code-based drift guard, and completion gated from outside the loop. | workshop lessons 03 (guards), 07 (baseline), 08 (contracts). |
+| Harness auditor | A subagent whose only job is to audit the harness from outside it: do the guards still fire, have skills drifted from their contracts, does every `CLAUDE.md` rule still sit in the tier it claims. | there being enough harness to audit. |
+| Implementation subagent | "Implement phase 04" → it does, stopping at every point where it would have to infer, asking, appending the Q&A to the PRD, and continuing. | `/decompose-resource` producing PRDs worth implementing against. |
+| MCP-as-code | Generate a typed filesystem API from connected MCP servers so tool catalogues live on disk instead of in context. | — |
+| Own-loop primer | Build a small tick-based agent against the API with your own loop, state, and verification. | — |
+
 ## Pipeline tooling
 
 Not gaps — a gap is something *you* can't do. These are the repo's own stages.
@@ -54,6 +69,7 @@ Not gaps — a gap is something *you* can't do. These are the repo's own stages.
 | 3 | /reinforce | ✅ built |
 | 4 | /decompose-resource | ⬜ not built |
 | 5 | /phase-overview | ⬜ not built |
+| 6 | /brainstorm | ⬜ not built |
 
 ## Debt
 
