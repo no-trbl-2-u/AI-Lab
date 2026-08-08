@@ -184,6 +184,29 @@ Neither guard enforces the eight points alone — `okf.mjs` holds the four
 frontmatter fields and `intake.mjs` holds the six body rows — so a green run
 means both halves are present.
 
+### Always — what this run taught about this skill
+
+If the run exposed something about **`/intake` itself**, append it to
+[`LEARNINGS.md`](LEARNINGS.md) next to this file:
+
+```markdown
+## YYYY-MM-DD · `kind` · open
+<what happened>
+**Account for:** <what should change, or what to watch for>
+```
+
+`fix` apply directly · `design` a real open question, and what `/brainstorm`
+pulls with no argument · `friction` it worked but was tedious.
+
+This step exists because it was already learned the hard way: the first run of
+this skill produced four fixes, recorded them in a `## Findings for the skill`
+section invented on the spot inside the delta, and **the very next delta didn't
+have that section.** A residue convention that lives outside the procedure does
+not survive its first author.
+
+**"Nothing new" is a first-class answer** — the same rule as phase 1's "no
+expectation", and for the same reason. A run that taught nothing adds nothing.
+
 ### House format
 
 Notes are [OKF](https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/main/okf/SPEC.md)

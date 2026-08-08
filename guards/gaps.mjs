@@ -147,6 +147,13 @@ const Session = z
     provenance: z.enum(PROVENANCE).optional(),
     reason: z.string().min(10).optional(),
     cites: z.array(z.number().int().positive()).default([]),
+    // Set when the session came from `/brainstorm` with no argument, which
+    // pulls the oldest open `design` learning. Closes the loop: a learning
+    // becomes a gap becomes a lab. Format: <unit>:<YYYY-MM-DD>.
+    from_learning: z
+      .string()
+      .regex(/^[\w/-]+:\d{4}-\d{2}-\d{2}$/, 'must be <unit>:<YYYY-MM-DD>, e.g. /reinforce:2026-08-06')
+      .optional(),
     generated: z.object({ by: Actor, at: z.string().min(1) }),
   })
   .strict()

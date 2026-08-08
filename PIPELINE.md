@@ -8,9 +8,12 @@ pulled toward gaps; curiosity can still push one in the side door, but it has to
 declare which gap it serves.
 
 ```
-a rough idea ──→ /brainstorm ──→ a gap, or a recorded "not a gap"
-                                        │
-                                        ↓
+a rough idea ──┐
+               ├──→ /brainstorm ──→ a gap, or a recorded "not a gap"
+LEARNINGS.md ──┘                              │
+   ↑  oldest open `design` entry              │
+   └── written by every skill's last phase    │
+                                              ↓
 GAPS.md ──── the standing list of things you can't do yet
    │
    │  pulls                                    pushes (curiosity)
