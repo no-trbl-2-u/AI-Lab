@@ -1,6 +1,26 @@
-# 06 — Building Agents with the Claude Agent SDK
+---
+type: Resource
+id: 6
+title: Building Agents with the Claude Agent SDK
+description: The agent loop reduces to gather context, take action, verify work — and the verification step is the one most often missing.
+origin: external
+resource: https://claude.com/blog/building-agents-with-the-claude-agent-sdk
+tags:
+  - agent-loop
+  - sdk
+  - gather-act-verify
+tier: core
+status: stable
+read: 2026-08
+conflicts: []
+verified: []
+generated:
+  by: claude/notes-0.1
+  at: 2026-08-03T00:00:00Z
+sources: []
+---
 
-**Source:** Anthropic / Claude — <https://claude.com/blog/building-agents-with-the-claude-agent-sdk>
+# 06 — Building Agents with the Claude Agent SDK
 
 ## Why it matters
 

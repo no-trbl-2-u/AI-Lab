@@ -32,6 +32,16 @@ This one didn't wait on `workshop/` — it doesn't extend a harness layer, it's
 a decomposition procedure for skills themselves, so it stood on its own gap
 (G11, `stated`) rather than a resource delta.
 
+### [`/reinforce`](reinforce/PRD.md)
+Pipeline build-order item #3 — the stage that searches an existing note's weak
+points rather than its topic, and the terminating action for `CLAUDE.md`'s
+knowledge-layer rule. Queue, guard, and skill are built; the four axes are
+specified but have never been run against a real note, which is the open
+question in [phase 02](reinforce/phases/02.md).
+
+Cut from `PIPELINE.md`'s build order rather than from a gap — a gap is something
+*you* can't do, and this was a missing stage in the pipeline itself.
+
 ## Queued
 
 ### Long-horizon runner
@@ -67,6 +77,35 @@ The prior-failure analysis behind the design is in
 [resources/12](../resources/12-long-horizon-control.md). Short version: an LLM
 drift-guard drifts with the thing it's guarding, and self-auditing cannot be
 enforced from inside the prompt.
+
+### Harness auditor
+A subagent whose only job is to audit the harness from outside it: do the
+guards still fire, have skills drifted from their contracts, does every
+`CLAUDE.md` rule still sit in the tier it claims.
+
+It has to be a subagent rather than a skill for a structural reason —
+[resource 12](../resources/12-long-horizon-control.md) is explicit that
+self-audit cannot be requested from inside the prompt, so the auditor must not
+share the context it is auditing. That is the same argument as
+[resource 13](../resources/13-epistemic-sandboxing.md), pointed at the harness
+instead of at a rules question.
+
+Mostly it should *run the deterministic guards and report*, not reason about
+compliance. An LLM judging whether rules were followed is the drift problem
+again.
+
+Serves [G13](../GAPS.md). Blocked on there being enough harness to audit.
+
+### Implementation subagent
+"Implement phase 04" → it does, stopping at every point where it would have to
+infer, asking, appending the Q&A to the PRD, and continuing. Deliverable-shaped,
+so a subagent rather than a skill: you want the diff, not the conversation.
+
+The appended Q&A is the interesting part — it turns the gaps in a PRD into a
+written record of what wasn't specified, which is exactly the input
+`/phase-overview` needs.
+
+Blocked on `/decompose-resource` producing PRDs worth implementing against.
 
 ### MCP-as-code
 Generate a typed filesystem API from connected MCP servers so tool catalogues

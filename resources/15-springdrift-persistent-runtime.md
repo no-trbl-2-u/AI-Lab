@@ -1,8 +1,41 @@
-# 15 — Springdrift: An Auditable Persistent Runtime for LLM Agents
+---
+type: Resource
+id: 15
+title: "Springdrift: An Auditable Persistent Runtime for LLM Agents"
+description: Long-lived agents should be auditable, self-observing operational systems with stable normative commitments, not stateless tools that happen to persist.
+origin: external
+resource: https://arxiv.org/abs/2604.04660
+tags:
+  - persistent-runtime
+  - replay
+  - audit
+  - retrieval
+  - self-state
+  - long-horizon
+tier: core
+status: stable
+published: 2026-04-06
+evidence:
+  tier: anecdotal
+  n: 1
+  summary: "Mixed. `measured` (synthetic) for retrieval — 800 cases / 200 queries, hybrid P@4 0.956 vs dense 0.920, non-overlapping CIs — and `measured` (formal) for the calculus, 7,056 pairs at 100% coverage. But everything about behaviour is n=1: one operator, 23 days, five episodes selected as illustrative rather than sampled."
+gap: G9/G10
+falsifier: A per-cycle self-state block that degrades cache hit rate and cost without improving outcomes on our eval set — measurable in lesson 07.
+conflicts:
+  - note: 9
+    section: kv-cache
+    nature: The sharpest conflict in the pool. A live clock and rotating vitals injected every cycle is maximal prefix volatility, and the paper never mentions caching. Both cannot be fully right.
+  - note: 8
+    section: multi-agent
+    nature: Partial tension — deep delegation with teams, but depth-capped.
+verified: []
+generated:
+  by: claude/notes-0.1
+  at: 2026-08-03T00:00:00Z
+sources: []
+---
 
-**Source:** Seamus Brady — <https://arxiv.org/abs/2604.04660>
-**Published:** 2026-04-06 (arXiv:2604.04660v1, paper dated March 2026)
-**Code:** <https://github.com/seamus-brady/springdrift> (on publication)
+# 15 — Springdrift: An Auditable Persistent Runtime for LLM Agents
 
 ## In brief
 
@@ -11,11 +44,9 @@
 | **Thesis** | Long-lived agents should be built as auditable, self-observing operational systems with stable normative commitments — not stateless tools that happen to persist. Corollary: auditability is a *precondition for trust*, not a debugging convenience. |
 | **Problem** | Session-bounded agents discard or compress context, so an operator cannot verify what happened or why. *"Adding memory to a session-bounded system does not solve this — it adds recall without accountability, persistence without auditability."* |
 | **Mechanism** | Four layers on supervised OTP processes: (a) ten append-only JSONL stores, state derived by replay, git-backed, plus a cycle log of every LLM call / tool / gate decision as DAG nodes; (b) a Curator assembling a priority-budgeted virtual context window each cycle, identity and sensorium never shed; (c) the sensorium — structured self-state injected every cycle with zero tool calls; (d) a D′ scorer at input/tool/output gates escalating to a deterministic normative calculus that emits an ordered axiom trail. |
-| **Evidence** | `measured` (synthetic) for retrieval: 800 cases / 200 queries, hybrid P@4 0.956 [0.936, 0.974] vs dense cosine 0.920 [0.895, 0.943], non-overlapping CIs. `measured` (formal, finite space) for the calculus: 7,056 pairs, 100% coverage, zero determinism or monotonicity violations. `anecdotal` for everything about behaviour — n=1, one operator, 23 days, five episodes *"selected as illustrative exemplars rather than sampled."* |
 | **Applicability** | Stated: one principal, one long-lived instance, weeks-to-months horizon, auditability valued over throughput. `inferred`: does not obviously transfer to multi-tenant or high-volume systems; the ~2000-token context budget is tuned to this workload; presumes you control the runtime. |
 | **Cost** | Stated: ~62,000 lines of Gleam across 125 files, ~1,500 tests, a BEAM runtime, 41.3 MB JSONL in 19 operating days **growing monotonically with untested long-term scalability**. `inferred`: the real cost is that this is an entire runtime, not a library — no incremental adoption path. You take the architecture or you take ideas out of it. |
-| **Conflicts** | Sharp tension with [09](09-manus-context-engineering.md) §KV-cache — a live clock and rotating vitals injected every cycle is maximal prefix volatility, and the paper never mentions caching. Agrees with and extends [12](12-long-horizon-control.md) §guards-must-be-code. Extends [14](14-memory-architecture.md) with outcome-weighted retrieval and time-decayed confidence, both absent there. Partial tension with [08](08-dont-build-multi-agents.md) — deep delegation with teams, but depth-capped. |
-| **So what** | gap: **G9** (retrieval), **G10** (persistence/supervision); contributes to **G5** (long-horizon). Four portable ideas needing none of the runtime: read-time confidence decay, utility-weighted retrieval, sub-agents barred from the operator channel, and an always-on self-state block. **Falsifier:** if a per-cycle self-state block degrades cache hit rate and cost without improving outcomes on our eval set, it isn't worth it here — measurable in lesson 07. |
+| **Implication** | Four portable ideas needing none of the runtime: read-time confidence decay, utility-weighted retrieval, sub-agents barred from the operator channel, and an always-on self-state block. Also contributes to **G5** (long-horizon). |
 
 ## Why it matters
 

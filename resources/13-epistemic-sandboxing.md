@@ -1,3 +1,29 @@
+---
+type: Resource
+id: 13
+title: Epistemic sandboxing
+description: Give a sub-agent a deliberately impoverished context so its prediction is uncontaminated, then diff that against the truth.
+origin: original
+tags:
+  - subagents
+  - epistemic-sandboxing
+  - prediction
+  - original-pattern
+tier: extraction
+status: stable
+published: 2026-08
+conflicts: []
+verified: []
+generated:
+  by: claude/notes-0.1
+  at: 2026-08-03T00:00:00Z
+sources:
+  - id: rules-reader
+    resource: https://github.com/no-trbl-2-u/board-brainstorm
+    title: The rules-reader agent in board-brainstorm
+    author: human:no-trbl-2-u
+---
+
 # 13 — Epistemic sandboxing
 
 **Type:** original pattern. Not published anywhere I could find. Extracted from

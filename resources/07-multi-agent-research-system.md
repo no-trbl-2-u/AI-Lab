@@ -1,6 +1,29 @@
-# 07 — How We Built Our Multi-Agent Research System
+---
+type: Resource
+id: 7
+title: How We Built Our Multi-Agent Research System
+description: A lead agent delegating to parallel sub-agents beats a single agent on breadth-first research, at a large token multiple.
+origin: external
+resource: https://www.anthropic.com/engineering/multi-agent-research-system
+tags:
+  - multi-agent
+  - orchestration
+  - research-agents
+tier: reference
+status: stable
+read: 2026-08
+conflicts:
+  - note: 8
+    section: thesis
+    nature: Directly opposed on whether sub-agents help or fracture. See the reconciliation in 08.
+verified: []
+generated:
+  by: claude/notes-0.1
+  at: 2026-08-03T00:00:00Z
+sources: []
+---
 
-**Source:** Anthropic Engineering — <https://www.anthropic.com/engineering/multi-agent-research-system>
+# 07 — How We Built Our Multi-Agent Research System
 
 ## Why it matters
 

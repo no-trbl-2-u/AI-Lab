@@ -63,7 +63,10 @@ never a maybe. Five phases, and the ordering is the methodology — skim, captur
 the reader's delta, *then* explain. See
 [`.claude/skills/intake/SKILL.md`](.claude/skills/intake/SKILL.md).
 
-**Kept** → a note in `resources/` in the house format, **plus** a visual
+**Kept** → a note in `resources/` in the house format — an
+[OKF](https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/main/okf/SPEC.md)
+document whose frontmatter holds the four points downstream tooling reads as
+data (`evidence`, `conflicts`, `gap`, `falsifier`) — **plus** a visual
 explainer at `resources/explainers/NN-<slug>.html` — six fixed sections, built
 for scanning. Section 03, "How much to believe it," is non-negotiable: a polished
 page makes weak evidence feel strong, and the evidence strip is the counterweight.
@@ -175,11 +178,25 @@ they don't repeat the prose-only mistake this repo exists to fix.
 3. **`/reinforce`** — searches a note's *weak points*, not its topic: who
    measured what this asserted, who solves the same problem differently, who
    holds the other side of an unresolved conflict, and whether anyone has run
-   the falsifier. Outputs candidates to a queue, never notes. **Not built.**
+   the falsifier. Outputs candidates to a queue, never notes. **Built** —
+   [skill](.claude/skills/reinforce/SKILL.md), [queue](resources/queue/README.md),
+   `guards/reinforce.mjs`. Not yet run against a real note; the axes are
+   specified but unproven, which is [phase 02](lab/reinforce/phases/02.md)'s
+   stage-5 question.
 4. **`/decompose-resource`** — after 3–4 real intakes, when you know what a delta
    actually looks like. **Not built.**
 5. **`/phase-overview`** — last. You won't know what "too big" feels like until a
    phase defeats you. **Not built.**
+6. **`/brainstorm`** — the front of the pipeline, and the piece that was missing
+   from this diagram entirely. Takes a rough idea and produces **a `GAPS.md`
+   entry with a provenance tag, or an explicit "not a gap"** — never code. Cites
+   `resources/` by note and section, and offers `/reinforce` when the pool is
+   silent rather than reasoning from training data. Closes
+   [G12](GAPS.md). **Not built.**
+
+   Its output being a *gap* rather than a plan is the whole point. A brainstorm
+   that ends in a PRD has skipped the spine, which is how both over-builds in
+   G12's evidence happened.
 
 ## Why the intake gate matters
 

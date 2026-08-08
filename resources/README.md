@@ -4,9 +4,15 @@ Notes on **harness design** — where "harness" means the full AI workspace:
 agents and subagents, memory, skills, scoped reference pools, permissions, and
 the enforcement layer that holds them together. Not the coding-agent product.
 
-Each note carries: source, why it matters, core patterns, memorable numbers,
-**wording notes** (what it should change in `SKILL.md` / `CLAUDE.md` /
-`AGENTS.md`), tensions with the other notes, and where it lands in the workshop.
+Each note is an [OKF](https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/main/okf/SPEC.md)
+document — YAML frontmatter, then prose. The frontmatter carries the fields you
+**filter** on (evidence tier, the gap it serves, its falsifier, its conflicts
+with other notes); the body carries what you **read** (why it matters, core
+patterns, memorable numbers, wording notes, and where it lands in the workshop).
+
+That split is the point: the pool's weak points are one `grep` over frontmatter
+instead of sixteen file reads. `node guards/okf.mjs` enforces it — see the
+header of that file for the one place we deliberately break conformance.
 
 **This is a gated pool.** Nothing enters without passing `/intake`
 ([PIPELINE.md](../PIPELINE.md)); what didn't make it is recorded in

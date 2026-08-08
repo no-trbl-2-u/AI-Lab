@@ -1,7 +1,31 @@
-# 01 — Effective Context Engineering for AI Agents
+---
+type: Resource
+id: 1
+title: Effective Context Engineering for AI Agents
+description: Context is a finite, degrading resource; engineer the smallest set of high-signal tokens rather than the largest.
+origin: external
+resource: https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents
+tags:
+  - context-engineering
+  - context-rot
+  - just-in-time-retrieval
+  - compaction
+  - system-prompts
+tier: core
+status: stable
+published: 2025-09-29
+conflicts:
+  - note: 8
+    section: multi-agent
+    nature: Endorses sub-agents for context isolation; 08 argues sub-agents fracture context. Both are right about different task shapes.
+verified: []
+generated:
+  by: claude/notes-0.1
+  at: 2026-08-03T00:00:00Z
+sources: []
+---
 
-**Source:** Anthropic Applied AI Team — <https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents>
-**Published:** 2025-09-29
+# 01 — Effective Context Engineering for AI Agents
 
 ## Why it matters
 

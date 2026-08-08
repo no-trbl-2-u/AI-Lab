@@ -1,6 +1,27 @@
-# 05 — Equipping Agents for the Real World with Agent Skills
+---
+type: Resource
+id: 5
+title: Equipping Agents for the Real World with Agent Skills
+description: Skills load instructions on demand, so the harness pays for a capability only when it is actually triggered.
+origin: external
+resource: https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills
+tags:
+  - skills
+  - progressive-disclosure
+  - trigger-design
+  - harness-layers
+tier: reference
+status: stable
+read: 2026-08
+conflicts: []
+verified: []
+generated:
+  by: claude/notes-0.1
+  at: 2026-08-03T00:00:00Z
+sources: []
+---
 
-**Source:** Anthropic Engineering — <https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills>
+# 05 — Equipping Agents for the Real World with Agent Skills
 
 ## Why it matters
 

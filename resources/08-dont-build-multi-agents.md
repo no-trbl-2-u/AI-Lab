@@ -1,6 +1,29 @@
-# 08 — Don't Build Multi-Agents
+---
+type: Resource
+id: 8
+title: Don't Build Multi-Agents
+description: Sub-agents fracture context and produce conflicting work; prefer a single-threaded agent with a compacted history.
+origin: external
+resource: https://cognition.com/blog/dont-build-multi-agents
+tags:
+  - multi-agent
+  - context-fracture
+  - single-threaded-agents
+tier: reference
+status: stable
+read: 2026-08
+conflicts:
+  - note: 7
+    section: thesis
+    nature: Directly opposed on whether sub-agents help or fracture, for what look like different task shapes.
+verified: []
+generated:
+  by: claude/notes-0.1
+  at: 2026-08-03T00:00:00Z
+sources: []
+---
 
-**Source:** Cognition — <https://cognition.com/blog/dont-build-multi-agents>
+# 08 — Don't Build Multi-Agents
 
 ## Why it matters
 

@@ -1,11 +1,10 @@
-# Secrets — never commit
-.env
-.env.*
-*.env.txt
 
 # Local harness overrides (lesson 01)
-.claude/settings.local.json
-
 # Run artifacts
-node_modules/
+# Secrets — never commit
+*.env.txt
 *.log
+.claude/settings.local.json
+.env
+.env.*
+node_modules/

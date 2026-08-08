@@ -23,15 +23,23 @@ const REQUIRED_SECTIONS = ['## Why it matters', '## Where it lands'];
 
 // The fixed schema every intaken resource is explained against.
 // See .claude/skills/intake/SKILL.md § The eight points
-const EIGHT_POINTS = [
+//
+// The eight points are now split across two homes, by query pattern:
+//
+//   frontmatter (guards/okf.mjs)  evidence · conflicts · gap · falsifier
+//   body table   (here)           Thesis · Problem · Mechanism ·
+//                                 Applicability · Cost · Implication
+//
+// Nothing appears in both — two sources of truth for the same field is how
+// they drift. The two guards together still enforce all eight; neither one
+// does it alone, so don't restore a row here without deleting it there.
+const BODY_POINTS = [
   'Thesis',
   'Problem',
   'Mechanism',
-  'Evidence',
   'Applicability',
   'Cost',
-  'Conflicts',
-  'So what',
+  'Implication',
 ];
 const fail = [];
 
@@ -125,7 +133,7 @@ for (const note of notes) {
           `/intake phase 2 was skipped or its output was not carried into the note.`
       );
     } else {
-      for (const point of EIGHT_POINTS) {
+      for (const point of BODY_POINTS) {
         if (!body.includes(`**${point}**`)) {
           fail.push(`resources/${note} "## In brief" is missing the ${point} row`);
         }

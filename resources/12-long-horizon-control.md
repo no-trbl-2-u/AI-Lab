@@ -1,3 +1,38 @@
+---
+type: Resource
+id: 12
+title: Long-horizon control
+description: Long-horizon agents fail on scope and completion, not capability, because an LLM drift-guard drifts with the thing it guards.
+origin: synthesis
+tags:
+  - long-horizon
+  - contracts
+  - drift
+  - tick-loop
+  - post-mortem
+tier: core
+status: stable
+published: 2026-08
+conflicts: []
+verified: []
+generated:
+  by: claude/notes-0.1
+  at: 2026-08-03T00:00:00Z
+sources:
+  - id: note-02
+    resource: /resources/02-agent-harness-engineering.md
+    title: Ralph loops and sprint contracts
+  - id: note-10
+    resource: /resources/10-twelve-factor-agents.md
+    title: 12-Factor Agents — factors 6, 8, 9, 12
+  - id: note-09
+    resource: /resources/09-manus-context-engineering.md
+    title: Manus — recitation
+  - id: failed-runner
+    title: An unpublished long-horizon runner that failed on exactly this
+    author: human:no-trbl-2-u
+---
+
 # 12 — Long-horizon control
 
 **Type:** synthesis + post-mortem. Draws on resource 02 (Ralph loops, sprint
