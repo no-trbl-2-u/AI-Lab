@@ -124,6 +124,29 @@ Then:
 node guards/reinforce.mjs
 ```
 
+### Always — what this run taught about this skill
+
+If the run exposed something about **`/reinforce` itself** — an axis that
+returned nothing useful, a query shape that kept finding agreement, a note whose
+frontmatter couldn't feed the axes — append it to [`LEARNINGS.md`](LEARNINGS.md)
+next to this file:
+
+```markdown
+## YYYY-MM-DD · `kind` · open
+<what happened>
+**Account for:** <what should change, or what to watch for>
+```
+
+`fix` apply directly · `design` a real open question, and what `/brainstorm`
+pulls with no argument · `friction` it worked but was tedious.
+
+The control's overlap number belongs here whenever it's surprising, in either
+direction. **"Nothing new" is a first-class answer.**
+
+```bash
+node tools/learnings.mjs --check
+```
+
 ---
 
 ## Rules

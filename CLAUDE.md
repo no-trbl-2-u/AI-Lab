@@ -59,8 +59,26 @@ expect before you tell them. Prediction precedes observation — it's
   code. That's what this repo exists to practise.
 
 ```bash
-npm run guard   # okf schema + fixtures + intake residue
+npm run guard   # gaps + okf + reinforce + learnings + roadmap staleness
 ```
+
+## Learning from a run
+
+**When running a skill teaches you something about the skill, record it** in the
+`LEARNINGS.md` beside it — `.claude/skills/<name>/`, `.claude/agents/`, or
+`guards/`. Each skill's final phase says how; the format is one entry per
+lesson, typed `fix` / `design` / `friction`.
+
+```bash
+node tools/learnings.mjs          # what's open, per unit
+node tools/learnings.mjs --next   # the oldest open `design` — what /brainstorm pulls
+```
+
+`/brainstorm` **with no argument** runs on that entry, which is how a lesson
+becomes a gap becomes a lab.
+
+**"Nothing new" is a first-class answer.** A run that taught nothing adds
+nothing — manufacturing a learning is how these files stop being read.
 
 ---
 
@@ -78,17 +96,27 @@ wearing a new hat.
 | Candidates name a target, queue decays | **code** — `guards/reinforce.mjs` | loud |
 | `ROADMAP.md` agrees with its sources | **code** — `tools/roadmap.mjs --check` | loud |
 | Gaps are well-formed, sessions resolve | **code** — `guards/gaps.mjs` | loud |
+| A learning's *format* is well-formed | **code** — `tools/learnings.mjs --check` | loud |
 | **A gap's provenance tag is _honest_** | **prose** | **silent** |
+| **A run that taught something records it** | **prose** | **silent** |
 | Nothing enters `resources/` but through `/intake` | **harness** — skill gate | loud-ish |
 | **Check `resources/` before answering** | **prose** | **silent** |
 | **Capture the prediction before explaining** | **prose** | **silent** |
 | A gap before a lab | **prose** | silent |
 
-The two bolded rows are the ones that matter most and hold least. Nothing
-detects an answer that skipped the pool and came from training data, and
+The bolded rows are the ones that matter most and hold least. Nothing detects an
+answer that skipped the pool and came from training data, and
 [R12](resources/12-long-horizon-control.md) is explicit that self-audit can't be
 requested from inside the prompt — so asking me to police myself here is not a
 fix.
+
+**The last row has already failed once.** The first `/intake` run recorded four
+findings in a section invented on the spot; the next run didn't, because nothing
+required it. That's the whole reason `LEARNINGS.md` exists — and it's still
+prose. The real fix is a `Stop` hook checking whether an invoked skill's
+LEARNINGS gained an entry, which is [G2](GAPS.md) and unbuilt. Note also that
+nothing can tell "ran and learned nothing" from "never ran"; that needs a run
+log.
 
 Three things make compliance likelier without pretending it's enforced:
 retrieval is cheap (one `grep`), the failure branch terminates in an action

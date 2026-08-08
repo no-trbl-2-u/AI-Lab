@@ -19,6 +19,26 @@ description: >
 See [PIPELINE.md](../../../PIPELINE.md) build order #6 and
 [G12](../../../GAPS.md).
 
+## Called with no argument
+
+```bash
+node tools/learnings.mjs --next
+```
+
+That prints the **oldest open `design` learning** across every skill, agent, and
+guard — a real unanswered question about the harness, recorded by whoever last
+ran the thing. Run the normal flow below with it as the idea, and note which
+entry you took.
+
+Deterministic, not random: a random pull re-surfaces the same entry and stops
+being trusted. If it prints `NONE`, **say so and stop.** Do not fall back to
+inventing a topic — nothing open means nothing open, and manufacturing a session
+to fill the silence is how these files fill with noise.
+
+On `verdict: gap`, set `from_learning: <unit>:<date>` in the session file and
+mark the source entry `resolved` pointing at the new gap. That closes the loop:
+a run teaches something → it becomes a gap → a lab closes it.
+
 ## The job
 
 **The job is not to hand over a finished plan, and it is emphatically not to
@@ -202,6 +222,7 @@ gap: G15                     # required iff verdict is `gap`
 provenance: observed         # required iff verdict is `gap`
 reason: <required iff verdict is `declined`>
 cites: [9, 12]               # notes consulted, by id
+from_learning: /reinforce:2026-08-06   # iff the session came from --next
 generated: { by: brainstorm/0.1, at: <ISO-8601> }
 ---
 
@@ -252,6 +273,32 @@ Then:
 ```bash
 node guards/gaps.mjs
 npm run roadmap
+```
+
+**If the session came from `--next`**, mark the source entry `resolved` with a
+line saying where it landed, and set `from_learning:` in the session file.
+
+### Always — what this run taught about this skill
+
+If the run exposed something about **`/brainstorm` itself** — a phase that
+dragged, a case it didn't handle, an instruction that turned out to be wrong —
+append it to [`LEARNINGS.md`](LEARNINGS.md) next to this file:
+
+```markdown
+## YYYY-MM-DD · `kind` · open
+<what happened>
+**Account for:** <what should change, or what to watch for>
+```
+
+`fix` apply directly · `design` a real open question, and what `--next` pulls ·
+`friction` it worked but was tedious; four open ones trip a threshold.
+
+**"Nothing new" is a first-class answer.** A run that taught nothing adds
+nothing. Manufacturing a learning to fill the section is how these files stop
+being read.
+
+```bash
+node tools/learnings.mjs --check
 ```
 
 ---
