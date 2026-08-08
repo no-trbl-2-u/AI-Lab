@@ -8,6 +8,9 @@ pulled toward gaps; curiosity can still push one in the side door, but it has to
 declare which gap it serves.
 
 ```
+a rough idea ──→ /brainstorm ──→ a gap, or a recorded "not a gap"
+                                        │
+                                        ↓
 GAPS.md ──── the standing list of things you can't do yet
    │
    │  pulls                                    pushes (curiosity)
@@ -192,7 +195,12 @@ they don't repeat the prose-only mistake this repo exists to fix.
    entry with a provenance tag, or an explicit "not a gap"** — never code. Cites
    `resources/` by note and section, and offers `/reinforce` when the pool is
    silent rather than reasoning from training data. Closes
-   [G12](GAPS.md). **Not built.**
+   [G12](GAPS.md). **Built** —
+   [skill](.claude/skills/brainstorm/SKILL.md),
+   [sessions](brainstorms/README.md), `guards/gaps.mjs`, and an isolated
+   `idea-man` / `devils-advocate` pair. Never run on a real idea; whether the
+   pair changes any outcome is [phase 03](lab/brainstorm/phases/03.md)'s
+   stage-5 question.
 
    Its output being a *gap* rather than a plan is the whole point. A brainstorm
    that ends in a PRD has skipped the spine, which is how both over-builds in

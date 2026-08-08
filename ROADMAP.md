@@ -18,7 +18,7 @@ hypotheses and unverified. Build against the top of that order.
 | **G2** | Hooks: know they exist, haven't built with them | `stated` | [lesson 02](workshop/lessons/02-hooks/README.md) |
 | **G6** | Cost mechanics are unmeasured | `inferred` | [lesson 07 §3](workshop/lessons/07-meta-eval/README.md) |
 | **G11** | No systematic way to decompose a large task into small, testable, modular skills | `stated` | [lab/modular-skill-composition](lab/modular-skill-composition/PRD.md) |
-| **G12** | Ideas don't become gaps; they become code or they evaporate | `observed` | `/brainstorm` (PIPELINE build order #6) |
+| **G12** | Ideas don't become gaps; they become code or they evaporate | `observed` | [lab/brainstorm](lab/brainstorm/PRD.md) |
 | **G14** | The resource pool has never been verified | `observed` | — |
 
 ## Blocked
@@ -43,6 +43,7 @@ hypotheses and unverified. Build against the top of that order.
 
 | Lab | Phases | Current position |
 |---|---|---|
+| [brainstorm](lab/brainstorm/PRD.md) | 3 | all three phases built. Never run on a real idea. |
 | [modular-skill-composition](lab/modular-skill-composition/PRD.md) | 3 | Phase 1 — done. Phases 2–3 not started. |
 | [reinforce](lab/reinforce/PRD.md) | 3 | phases 01 and 03 built; phase 02 built but unproven. |
 
@@ -69,7 +70,7 @@ Not gaps — a gap is something *you* can't do. These are the repo's own stages.
 | 3 | /reinforce | ✅ built |
 | 4 | /decompose-resource | ⬜ not built |
 | 5 | /phase-overview | ⬜ not built |
-| 6 | /brainstorm | ⬜ not built |
+| 6 | /brainstorm | ✅ built |
 
 ## Debt
 

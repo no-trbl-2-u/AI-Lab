@@ -139,7 +139,9 @@ loop, state, and verification.
 Fine as-is — you consume MCP more than you author it. Listed so it isn't
 mistaken for a strength, not because it needs closing soon.
 
----
+**Closed when:** one MCP server has been authored from scratch — tool schemas,
+error shapes, and the decision about what *not* to expose — without a draft to
+review first.
 
 ### G9 — Retrieval: no working model of embeddings vs. lexical vs. hybrid
 `delta` · not urgent · from [resource 15](resources/15-springdrift-persistent-runtime.md)
@@ -151,7 +153,9 @@ Relevant because [resource 15](resources/15-springdrift-persistent-runtime.md)
 supplies a better promotion trigger for lesson 05 than the access-counting we
 invented — and adopting it means understanding it.
 
----
+**Closed when:** resource 15's hybrid-vs-dense retrieval result can be explained
+with the source closed, and lesson 05's promotion trigger has either been
+adopted with its ranking understood or rejected for a stated reason.
 
 ### G10 — Persistence, supervision, and crash recovery as a runtime concern
 `delta` · not urgent · from [resource 15](resources/15-springdrift-persistent-runtime.md)
@@ -159,7 +163,8 @@ invented — and adopting it means understanding it.
 Append-only is `partial` (anchored on ADR-style indexes). Supervision, restart
 strategies, and replay-based state recovery are `unknown`.
 
----
+**Closed when:** a process has been killed mid-work and seen to rebuild its
+state by replay rather than by reloading a snapshot.
 
 ### G11 — No systematic way to decompose a large task into small, testable, modular skills
 `stated` · **ready now** · → [lab/modular-skill-composition](lab/modular-skill-composition/PRD.md)
@@ -180,7 +185,7 @@ repo with the output compared against a hand-written decomposition.
 ---
 
 ### G12 — Ideas don't become gaps; they become code or they evaporate
-`observed` · **ready now** · → `/brainstorm` (PIPELINE build order #6)
+`observed` · **ready now** · → [lab/brainstorm](lab/brainstorm/PRD.md)
 
 `GAPS.md` is the spine, and nothing feeds it. There is no path from a rough
 idea to a gap entry — ideas either get built immediately, skipping the spine
