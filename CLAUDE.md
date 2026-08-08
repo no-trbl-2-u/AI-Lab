@@ -48,6 +48,27 @@ So: for a question about something in `workshop/` or `lab/`, ask what they
 expect before you tell them. Prediction precedes observation — it's
 [R13](resources/13-epistemic-sandboxing.md), turned on the learner.
 
+## Asking
+
+**Questions to the user go through `AskUserQuestion`, not prose.** A question
+buried in a paragraph is a question the user has to re-read to find; a question
+in the tool is one they can answer by picking.
+
+- **Batch them.** Up to four per call. Ask everything the next step actually
+  depends on in one go, rather than blocking, resuming, and blocking again.
+- **Recommended option first**, marked `(Recommended)`. If nothing is
+  recommendable the set is wrong — rewrite the options.
+- **Options are design pivots, not phrasings.** Each one should send the work
+  somewhere different. Two options that produce the same artifact are one
+  option.
+- **Each option names its trade-off** — what you get, and what you give up to
+  get it. An option whose description is only its upside is advertising, and
+  the user can't choose against something they weren't told.
+
+The bar for asking at all is unchanged: ask when the readings diverge into
+materially different work. Otherwise pick the obvious default, say which, and
+carry on.
+
 ## Building
 
 - **A gap before a lab.** Labs are cut from `GAPS.md`, not from whatever
@@ -103,6 +124,7 @@ wearing a new hat.
 | **Check `resources/` before answering** | **prose** | **silent** |
 | **Capture the prediction before explaining** | **prose** | **silent** |
 | A gap before a lab | **prose** | silent |
+| Questions use `AskUserQuestion`, options name trade-offs | **prose** | silent |
 
 The bolded rows are the ones that matter most and hold least. Nothing detects an
 answer that skipped the pool and came from training data, and
