@@ -32,6 +32,20 @@ This one didn't wait on `workshop/` — it doesn't extend a harness layer, it's
 a decomposition procedure for skills themselves, so it stood on its own gap
 (G11, `stated`) rather than a resource delta.
 
+### [`/brainstorm`](brainstorm/PRD.md)
+Closes [G12](../GAPS.md) — ideas don't become gaps, they become code or they
+evaporate. The front of the pipeline: a rough idea in, a `GAPS.md` entry with a
+provenance tag or a recorded "not a gap" out. Never code.
+
+All three phases built. `guards/gaps.mjs` gave the spine its first validation
+and found three gaps with no closing condition on its first run. The isolated
+`idea-man` / `devils-advocate` pair runs unconditionally, which is the fix to the
+prior on-request version — nobody interrupts their own good mood to ask whether
+they're over-engineering.
+
+Never run on a real idea. Whether the pair changes any outcome is
+[phase 03](brainstorm/phases/03.md)'s stage-5 question.
+
 ### [`/reinforce`](reinforce/PRD.md)
 Pipeline build-order item #3 — the stage that searches an existing note's weak
 points rather than its topic, and the terminating action for `CLAUDE.md`'s

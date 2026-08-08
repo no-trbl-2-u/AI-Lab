@@ -77,6 +77,8 @@ wearing a new hat.
 | Notes are OKF, gaps and conflicts resolve | **code** — `guards/okf.mjs` | loud |
 | Candidates name a target, queue decays | **code** — `guards/reinforce.mjs` | loud |
 | `ROADMAP.md` agrees with its sources | **code** — `tools/roadmap.mjs --check` | loud |
+| Gaps are well-formed, sessions resolve | **code** — `guards/gaps.mjs` | loud |
+| **A gap's provenance tag is _honest_** | **prose** | **silent** |
 | Nothing enters `resources/` but through `/intake` | **harness** — skill gate | loud-ish |
 | **Check `resources/` before answering** | **prose** | **silent** |
 | **Capture the prediction before explaining** | **prose** | **silent** |
