@@ -1,0 +1,586 @@
+<style>
+  .ex {
+    color-scheme: light;
+    --surface-1: #fcfcfb;
+    --plane: #f9f9f7;
+    --ink-1: #0b0b0b;
+    --ink-2: #52514e;
+    --ink-muted: #898781;
+    --grid: #e1e0d9;
+    --axis: #c3c2b7;
+    --border: rgba(11, 11, 11, 0.10);
+    --series-1: #2a78d6;
+    --series-2: #e34948;
+    --good: #0ca30c;
+    --warning: #fab219;
+    --serious: #ec835a;
+    --critical: #d03b3b;
+
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    background: var(--plane);
+    color: var(--ink-1);
+    line-height: 1.55;
+    max-width: 62rem;
+    margin: 0 auto;
+    padding: 2rem 1.25rem 5rem;
+    -webkit-font-smoothing: antialiased;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) .ex {
+      color-scheme: dark;
+      --surface-1: #1a1a19;
+      --plane: #0d0d0d;
+      --ink-1: #ffffff;
+      --ink-2: #c3c2b7;
+      --ink-muted: #8f8e86;
+      --grid: #2c2c2a;
+      --axis: #383835;
+      --border: rgba(255, 255, 255, 0.10);
+      --series-1: #3987e5;
+      --series-2: #e66767;
+    }
+  }
+  :root[data-theme="dark"] .ex {
+    color-scheme: dark;
+    --surface-1: #1a1a19;
+    --plane: #0d0d0d;
+    --ink-1: #ffffff;
+    --ink-2: #c3c2b7;
+    --ink-muted: #8f8e86;
+    --grid: #2c2c2a;
+    --axis: #383835;
+    --border: rgba(255, 255, 255, 0.10);
+    --series-1: #3987e5;
+    --series-2: #e66767;
+  }
+
+  .ex * { box-sizing: border-box; }
+  .ex h1, .ex h2, .ex h3, .ex p, .ex ul, .ex ol, .ex figure { margin: 0; }
+
+  .ex__kicker {
+    font-size: .75rem; letter-spacing: .09em; text-transform: uppercase;
+    color: var(--ink-muted); font-weight: 600;
+  }
+  .ex__title {
+    font-size: clamp(1.9rem, 5vw, 3rem); line-height: 1.1;
+    font-weight: 700; letter-spacing: -.02em; margin: .5rem 0 .75rem;
+  }
+  .ex__meta { color: var(--ink-2); font-size: .95rem; }
+  .ex__meta a { color: var(--series-1); }
+
+  .ex__thesis {
+    margin: 2rem 0; padding: 1.5rem 1.6rem;
+    background: var(--surface-1); border: 1px solid var(--border);
+    border-left: 4px solid var(--series-1); border-radius: 10px;
+    font-size: clamp(1.15rem, 2.4vw, 1.45rem); line-height: 1.4; font-weight: 500;
+  }
+
+  .ex section { margin-top: 3.5rem; }
+  .ex h2 {
+    font-size: 1.45rem; font-weight: 700; letter-spacing: -.01em;
+    padding-bottom: .6rem; border-bottom: 1px solid var(--grid); margin-bottom: 1.5rem;
+  }
+  .ex h2 span { color: var(--ink-muted); font-weight: 500; margin-right: .6rem; }
+  .ex p { color: var(--ink-2); margin-bottom: 1rem; }
+  .ex p:last-child { margin-bottom: 0; }
+  .ex p strong, .ex li strong { color: var(--ink-1); }
+
+  .ex__card {
+    background: var(--surface-1); border: 1px solid var(--border);
+    border-radius: 10px; padding: 1.25rem 1.4rem;
+  }
+  .ex__grid2 { display: grid; gap: 1rem; grid-template-columns: 1fr; }
+  @media (min-width: 42rem) { .ex__grid2 { grid-template-columns: 1fr 1fr; } }
+
+  /* ── evidence strip (section 03) ─────────────────────────────── */
+  .ex__evrow {
+    display: grid; gap: .6rem 1rem; align-items: start;
+    grid-template-columns: 1.6rem 1fr;
+    padding: .85rem 0; border-bottom: 1px solid var(--grid);
+  }
+  .ex__evrow:last-child { border-bottom: 0; }
+  .ex__evicon { font-size: 1.05rem; line-height: 1.4; }
+  .ex__evtier {
+    display: inline-block; font-size: .72rem; font-weight: 700;
+    letter-spacing: .06em; text-transform: uppercase;
+    padding: .12rem .45rem; border-radius: 4px; margin-right: .5rem;
+    border: 1px solid var(--border); color: var(--ink-1);
+  }
+  .ex__evtier--strong { background: rgba(12,163,12,.12); }
+  .ex__evtier--weak   { background: rgba(250,178,25,.16); }
+  .ex__evtier--none   { background: rgba(208,59,59,.12); }
+  .ex__evrow p { margin: .3rem 0 0; font-size: .93rem; }
+
+  /* ── chart (section 04) ──────────────────────────────────────── */
+  .ex__figure { background: var(--surface-1); border: 1px solid var(--border); border-radius: 10px; padding: 1.4rem 1.4rem 1.1rem; }
+  .ex__figtitle { font-size: 1rem; font-weight: 700; margin-bottom: .2rem; }
+  .ex__figsub { font-size: .85rem; color: var(--ink-muted); margin-bottom: 1.2rem; }
+  .ex__legend { display: flex; flex-wrap: wrap; gap: 1.1rem; margin-bottom: 1.1rem; font-size: .85rem; color: var(--ink-2); }
+  .ex__legend span { display: inline-flex; align-items: center; gap: .45rem; }
+  .ex__swatch { width: 11px; height: 11px; border-radius: 3px; display: inline-block; }
+  .ex__chart { overflow-x: auto; }
+  .ex__row { display: grid; grid-template-columns: minmax(6.5rem, 9rem) 1fr; gap: .8rem; align-items: center; margin-bottom: .55rem; }
+  .ex__rowlab { font-size: .8rem; color: var(--ink-2); text-align: right; line-height: 1.25; }
+  .ex__bars { min-width: 14rem; }
+  .ex__bar { height: 11px; border-radius: 0 4px 4px 0; position: relative; margin-bottom: 2px; transition: filter .12s; }
+  .ex__bar:last-child { margin-bottom: 0; }
+  .ex__bar:hover { filter: brightness(1.12); }
+  .ex__bar b { position: absolute; left: calc(100% + .4rem); top: 50%; transform: translateY(-50%);
+               font-size: .7rem; font-weight: 600; color: var(--ink-2); white-space: nowrap; }
+  .ex__bar--1 { background: var(--series-1); }
+  .ex__bar--2 { background: var(--series-2); }
+  .ex__axis { display: flex; justify-content: space-between; border-top: 1px solid var(--grid);
+              margin-top: .9rem; padding-top: .4rem; font-size: .72rem; color: var(--ink-muted); }
+  .ex__axis-title { font-size: .78rem; color: var(--ink-muted); margin-top: .5rem; }
+
+  .ex details { margin-top: 1.1rem; font-size: .85rem; }
+  .ex summary { cursor: pointer; color: var(--ink-2); font-weight: 600; }
+  .ex table { border-collapse: collapse; margin-top: .8rem; font-size: .82rem; width: 100%; }
+  .ex th, .ex td { border: 1px solid var(--grid); padding: .35rem .6rem; text-align: left; color: var(--ink-2); }
+  .ex th { color: var(--ink-1); font-weight: 600; }
+  .ex .ex__tablewrap { overflow-x: auto; }
+
+  /* ── one-thing (section 05) ──────────────────────────────────── */
+  .ex__hero {
+    background: var(--surface-1); border: 1px solid var(--border);
+    border-left: 4px solid var(--series-2); border-radius: 10px;
+    padding: 1.8rem 1.6rem;
+  }
+  .ex__heroline { font-size: clamp(1.2rem, 2.8vw, 1.6rem); line-height: 1.35; font-weight: 600; color: var(--ink-1); }
+
+  /* ── take / leave (section 06) ───────────────────────────────── */
+  .ex__vs h3 { font-size: .8rem; text-transform: uppercase; letter-spacing: .07em; margin-bottom: .85rem; }
+  .ex__vs--take h3 { color: var(--good); }
+  .ex__vs--leave h3 { color: var(--critical); }
+  .ex__vs ul { list-style: none; padding: 0; }
+  .ex__vs li { font-size: .9rem; color: var(--ink-2); padding-left: 1.2rem; position: relative; margin-bottom: .7rem; }
+  .ex__vs li:last-child { margin-bottom: 0; }
+  .ex__vs--take li::before { content: "✓"; position: absolute; left: 0; color: var(--good); font-weight: 700; }
+  .ex__vs--leave li::before { content: "✕"; position: absolute; left: 0; color: var(--critical); font-weight: 700; }
+
+  .ex__conflicts { margin-top: 1rem; }
+  .ex__conflict { padding: .9rem 0; border-bottom: 1px solid var(--grid); font-size: .9rem; color: var(--ink-2); }
+  .ex__conflict:last-child { border-bottom: 0; }
+  .ex__conflict b { color: var(--ink-1); }
+
+  .ex__footer {
+    margin-top: 4rem; padding-top: 1.2rem; border-top: 1px solid var(--grid);
+    font-size: .82rem; color: var(--ink-muted);
+  }
+  .ex__diagram { width: 100%; height: auto; display: block; }
+</style>
+
+<div class="ex">
+
+  <p class="ex__kicker">Resource 17 · first contact</p>
+  <h1 class="ex__title">The self-improving agent that quietly gets worse</h1>
+  <p class="ex__meta">
+    Ye, Li, Pruksachatkun, Zhang &amp; Wu · Salesforce AI Research · 18 Aug 2026 ·
+    <a href="https://arxiv.org/abs/2608.18066">arXiv:2608.18066</a>
+  </p>
+
+  <p class="ex__thesis">
+    Agents that learn by writing lessons to a memory bank look like they improve — but the
+    improvement is mostly an artifact of running the experiment <em>once</em>, in a
+    conveniently easy-to-hard task order. Run it three times and shuffle the order, and the
+    memory loop adds noise and drops <em>below</em> an agent with no memory at all.
+  </p>
+
+  <!-- 01 ─────────────────────────────────────────────────────── -->
+  <section>
+    <h2><span>01</span>The problem it exists to solve</h2>
+    <p>
+      You have an agent that keeps notes. After each job it writes down what it learned, and
+      it reads those notes before the next job. Over a few hundred jobs it should get better.
+      The papers say it does.
+    </p>
+    <p>
+      <strong>But how would you know?</strong> Everyone reports a single run. An agent doing
+      multi-step work in a messy environment is noisy to begin with, and a note-taking loop is
+      <em>stateful</em> — a lucky success early gets written down, retrieved, and built on;
+      an unlucky one does the same in the other direction. Two runs of the identical setup
+      end up with different notebooks. So the number you publish is one draw from a
+      distribution nobody measured.
+    </p>
+    <p>
+      There is a second, quieter problem. Benchmarks list easy tasks first, because that is
+      the order people write them in. An agent learning across that stream gets a free
+      curriculum. Real users do not submit their requests easiest-first.
+    </p>
+  </section>
+
+  <!-- 02 ─────────────────────────────────────────────────────── -->
+  <section>
+    <h2><span>02</span>How it works — where the loop goes wrong</h2>
+    <p>
+      The setup is a loop: do a task, write a lesson, file it, retrieve it next time. The
+      paper's contribution is showing that <strong>the thing writing the lessons cannot see
+      the environment</strong> — so it writes advice that is sensible in the abstract and
+      impossible here, and the loop then makes that advice <em>more</em> likely over time.
+    </p>
+
+    <figure class="ex__card" style="padding:1.6rem 1.2rem;">
+      <svg class="ex__diagram" viewBox="0 0 760 340" role="img"
+           aria-label="Diagram: the task-memory loop. A task goes to the agent, producing a trajectory. The memory writer turns the trajectory into a lesson, but is blind to the environment's constraints and the task's rubric. The lesson enters the memory bank, is retrieved for later tasks, and a wrong lesson is reinforced each time it is retrieved.">
+        <defs>
+          <marker id="ex17arrow" viewBox="0 0 10 10" refX="9" refY="5"
+                  markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor"/>
+          </marker>
+          <marker id="ex17arrowbad" viewBox="0 0 10 10" refX="9" refY="5"
+                  markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--series-2)"/>
+          </marker>
+        </defs>
+
+        <g fill="none" stroke="currentColor" stroke-width="1.6" color="var(--axis)">
+          <path d="M126 62 H196" marker-end="url(#ex17arrow)"/>
+          <path d="M326 62 H396" marker-end="url(#ex17arrow)"/>
+          <path d="M526 62 V108" marker-end="url(#ex17arrow)"/>
+          <path d="M461 158 H384" marker-end="url(#ex17arrow)"/>
+          <path d="M236 158 H166 V88" marker-end="url(#ex17arrow)"/>
+        </g>
+
+        <!-- task -->
+        <rect x="26" y="38" width="100" height="48" rx="8"
+              fill="var(--plane)" stroke="var(--axis)" stroke-width="1.4"/>
+        <text x="76" y="61" text-anchor="middle" font-size="13" font-weight="600"
+              fill="var(--ink-1)" font-family="system-ui, sans-serif">Task n</text>
+        <text x="76" y="77" text-anchor="middle" font-size="10.5"
+              fill="var(--ink-muted)" font-family="system-ui, sans-serif">from the stream</text>
+
+        <!-- agent -->
+        <rect x="196" y="38" width="130" height="48" rx="8"
+              fill="var(--plane)" stroke="var(--axis)" stroke-width="1.4"/>
+        <text x="261" y="61" text-anchor="middle" font-size="13" font-weight="600"
+              fill="var(--ink-1)" font-family="system-ui, sans-serif">Agent acts</text>
+        <text x="261" y="77" text-anchor="middle" font-size="10.5"
+              fill="var(--ink-muted)" font-family="system-ui, sans-serif">→ trajectory + reward</text>
+
+        <!-- memory writer: the blind spot -->
+        <rect x="396" y="30" width="176" height="64" rx="8"
+              fill="var(--plane)" stroke="var(--series-2)" stroke-width="2"/>
+        <text x="484" y="52" text-anchor="middle" font-size="13" font-weight="700"
+              fill="var(--ink-1)" font-family="system-ui, sans-serif">Memory writer</text>
+        <text x="484" y="69" text-anchor="middle" font-size="10.5"
+              fill="var(--series-2)" font-family="system-ui, sans-serif">cannot see the environment</text>
+        <text x="484" y="84" text-anchor="middle" font-size="10.5"
+              fill="var(--series-2)" font-family="system-ui, sans-serif">cannot see the rubric</text>
+
+        <!-- bank -->
+        <rect x="461" y="108" width="176" height="66" rx="8"
+              fill="var(--plane)" stroke="var(--axis)" stroke-width="1.4"/>
+        <text x="549" y="130" text-anchor="middle" font-size="13" font-weight="600"
+              fill="var(--ink-1)" font-family="system-ui, sans-serif">Memory bank</text>
+        <text x="549" y="147" text-anchor="middle" font-size="10.5"
+              fill="var(--ink-muted)" font-family="system-ui, sans-serif">no validation gate —</text>
+        <text x="549" y="161" text-anchor="middle" font-size="10.5"
+              fill="var(--ink-muted)" font-family="system-ui, sans-serif">every lesson is unverified</text>
+
+        <!-- retriever -->
+        <rect x="236" y="134" width="140" height="48" rx="8"
+              fill="var(--plane)" stroke="var(--axis)" stroke-width="1.4"/>
+        <text x="306" y="157" text-anchor="middle" font-size="13" font-weight="600"
+              fill="var(--ink-1)" font-family="system-ui, sans-serif">Retriever</text>
+        <text x="306" y="173" text-anchor="middle" font-size="10.5"
+              fill="var(--ink-muted)" font-family="system-ui, sans-serif">top-k into next context</text>
+
+        <!-- the amplification callout -->
+        <rect x="26" y="220" width="708" height="98" rx="9"
+              fill="var(--plane)" stroke="var(--series-2)" stroke-width="1.6" stroke-dasharray="5 4"/>
+        <text x="46" y="246" font-size="12" font-weight="700"
+              fill="var(--series-2)" font-family="system-ui, sans-serif">The amplification path</text>
+        <text x="46" y="268" font-size="11.5" fill="var(--ink-2)" font-family="system-ui, sans-serif">
+          The map site times out → the agent estimates distance with the Haversine formula → it happens to score correct →
+        </text>
+        <text x="46" y="285" font-size="11.5" fill="var(--ink-2)" font-family="system-ui, sans-serif">
+          &quot;use Haversine&quot; is written to the bank → it is retrieved → it is used again → it is written again.
+        </text>
+        <text x="46" y="306" font-size="11.5" font-weight="600" fill="var(--ink-1)" font-family="system-ui, sans-serif">
+          Entry is random. Reinforcement is not. The earlier a wrong lesson lands, the more of the run it owns.
+        </text>
+
+        <path d="M549 186 C549 214, 300 206, 132 220" fill="none"
+              stroke="var(--series-2)" stroke-width="1.6" stroke-dasharray="4 4"
+              marker-end="url(#ex17arrowbad)"/>
+      </svg>
+      <figcaption style="font-size:.82rem;color:var(--ink-muted);margin-top:1rem;">
+        Two methods were tested in this shape — <b>AWM</b> (writes step-by-step workflows from
+        successes only) and <b>ReasoningBank</b> (writes free-form insights from successes
+        <em>and</em> failures, with a retriever). ReasoningBank is the newer and the more fragile.
+      </figcaption>
+    </figure>
+  </section>
+
+  <!-- 03 ─────────────────────────────────────────────────────── -->
+  <section>
+    <h2><span>03</span>How much to believe it</h2>
+    <p>
+      Read this before the numbers, not after. This paper is unusually strong on evidence —
+      but not uniformly, and the two halves are not equally solid.
+    </p>
+
+    <div class="ex__card">
+      <div class="ex__evrow">
+        <div class="ex__evicon" aria-hidden="true">◆</div>
+        <div>
+          <span class="ex__evtier ex__evtier--strong">Measured</span>
+          <b>The variance and task-order findings.</b>
+          <p>
+            3 identical runs × 3 benchmarks (WebArena 812 tasks, VisualWebArena 910, SCUBA 267)
+            × 3 task orders. Ground-truth rewards, not an LLM judge. Standard deviations and
+            best-worst gaps reported per domain. This is the half you can lean on.
+          </p>
+        </div>
+      </div>
+      <div class="ex__evrow">
+        <div class="ex__evicon" aria-hidden="true">▲</div>
+        <div>
+          <span class="ex__evtier ex__evtier--weak">Measured, n = 3</span>
+          <b>Three runs is enough to see noise, not to price an effect.</b>
+          <p>
+            The authors say so themselves: their own headline gain of +1.5% carries
+            <b>p = 0.23</b>. That cuts both ways — it undercuts the method's claimed gain, and it
+            also means small differences <em>between</em> their conditions are not resolvable.
+          </p>
+        </div>
+      </div>
+      <div class="ex__evrow">
+        <div class="ex__evicon" aria-hidden="true">▲</div>
+        <div>
+          <span class="ex__evtier ex__evtier--weak">Qualitative</span>
+          <b>The underspecification diagnosis — including the Haversine story.</b>
+          <p>
+            Hand-inspection of a <em>subset</em> of memories. Appendix A states plainly that an
+            exhaustive review was infeasible and that other failure patterns likely exist. The
+            keyword-frequency plots are real counts, but the causal story around them is a
+            hypothesis with good illustrations, not a measured mechanism.
+          </p>
+        </div>
+      </div>
+      <div class="ex__evrow">
+        <div class="ex__evicon" aria-hidden="true">●</div>
+        <div>
+          <span class="ex__evtier ex__evtier--none">Scope limit</span>
+          <b>Web browsing, two methods, one backbone model.</b>
+          <p>
+            GPT-5-mini throughout. No other domain, no other memory technique, and none of the
+            most recent memory-management work. Whether this transfers to a memory over a
+            <em>stable curated corpus</em> — rather than self-written lessons — is untested here.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 ─────────────────────────────────────────────────────── -->
+  <section>
+    <h2><span>04</span>The numbers</h2>
+    <p>
+      The single most useful statistic is the <strong>best-worst gap</strong>: run the same
+      configuration three times, and this is the spread between the luckiest and unluckiest
+      result. It is the range a single-run number could have landed in by chance — so any
+      claimed improvement smaller than this bar is indistinguishable from luck.
+    </p>
+
+    <figure class="ex__figure">
+      <div class="ex__figtitle">Adding a memory loop widens the luck window</div>
+      <div class="ex__figsub">Best-worst pass-rate gap across 3 identical runs, by benchmark domain. Lower is more reliable.</div>
+
+      <div class="ex__legend">
+        <span><i class="ex__swatch" style="background:var(--series-1)"></i> No-memory baseline</span>
+        <span><i class="ex__swatch" style="background:var(--series-2)"></i> With ReasoningBank</span>
+      </div>
+
+      <div class="ex__chart">
+        <div class="ex__row"><div class="ex__rowlab">WebArena<br>Multisite</div><div class="ex__bars">
+          <div class="ex__bar ex__bar--1" style="width:18.9%" title="Baseline · Multisite · 2.08%"><b>2.1</b></div>
+          <div class="ex__bar ex__bar--2" style="width:94.7%" title="ReasoningBank · Multisite · 10.42%"><b>10.4</b></div></div></div>
+        <div class="ex__row"><div class="ex__rowlab">WebArena<br>Map</div><div class="ex__bars">
+          <div class="ex__bar ex__bar--1" style="width:25.0%" title="Baseline · Map · 2.75%"><b>2.8</b></div>
+          <div class="ex__bar ex__bar--2" style="width:75.1%" title="ReasoningBank · Map · 8.26%"><b>8.3</b></div></div></div>
+        <div class="ex__row"><div class="ex__rowlab">SCUBA<br>Service</div><div class="ex__bars">
+          <div class="ex__bar ex__bar--1" style="width:60.6%" title="Baseline · SCUBA Service · 6.67%"><b>6.7</b></div>
+          <div class="ex__bar ex__bar--2" style="width:80.8%" title="ReasoningBank · SCUBA Service · 8.89%"><b>8.9</b></div></div></div>
+        <div class="ex__row"><div class="ex__rowlab">WebArena<br>GitLab</div><div class="ex__bars">
+          <div class="ex__bar ex__bar--1" style="width:40.4%" title="Baseline · GitLab · 4.44%"><b>4.4</b></div>
+          <div class="ex__bar ex__bar--2" style="width:70.7%" title="ReasoningBank · GitLab · 7.78%"><b>7.8</b></div></div></div>
+        <div class="ex__row"><div class="ex__rowlab">WebArena<br>Admin</div><div class="ex__bars">
+          <div class="ex__bar ex__bar--1" style="width:25.0%" title="Baseline · Shopping Admin · 2.75%"><b>2.8</b></div>
+          <div class="ex__bar ex__bar--2" style="width:45.0%" title="ReasoningBank · Shopping Admin · 4.95%"><b>5.0</b></div></div></div>
+        <div class="ex__row"><div class="ex__rowlab">WebArena<br>Reddit</div><div class="ex__bars">
+          <div class="ex__bar ex__bar--1" style="width:34.3%" title="Baseline · Reddit · 3.77%"><b>3.8</b></div>
+          <div class="ex__bar ex__bar--2" style="width:42.9%" title="ReasoningBank · Reddit · 4.72%"><b>4.7</b></div></div></div>
+        <div class="ex__row"><div class="ex__rowlab">SCUBA<br>Admin</div><div class="ex__bars">
+          <div class="ex__bar ex__bar--1" style="width:5.7%" title="Baseline · SCUBA Admin · 0.63%"><b>0.6</b></div>
+          <div class="ex__bar ex__bar--2" style="width:34.5%" title="ReasoningBank · SCUBA Admin · 3.80%"><b>3.8</b></div></div></div>
+        <div class="ex__row"><div class="ex__rowlab">VisualWebArena<br>Shopping</div><div class="ex__bars">
+          <div class="ex__bar ex__bar--1" style="width:17.5%" title="Baseline · VWA Shopping · 1.93%"><b>1.9</b></div>
+          <div class="ex__bar ex__bar--2" style="width:35.1%" title="ReasoningBank · VWA Shopping · 3.86%"><b>3.9</b></div></div></div>
+        <div class="ex__row"><div class="ex__rowlab">VisualWebArena<br>Reddit</div><div class="ex__bars">
+          <div class="ex__bar ex__bar--1" style="width:21.6%" title="Baseline · VWA Reddit · 2.38%"><b>2.4</b></div>
+          <div class="ex__bar ex__bar--2" style="width:30.3%" title="ReasoningBank · VWA Reddit · 3.33%"><b>3.3</b></div></div></div>
+        <div class="ex__row"><div class="ex__rowlab">VisualWebArena<br>Classifieds</div><div class="ex__bars">
+          <div class="ex__bar ex__bar--1" style="width:19.5%" title="Baseline · VWA Classifieds · 2.14%"><b>2.1</b></div>
+          <div class="ex__bar ex__bar--2" style="width:27.2%" title="ReasoningBank · VWA Classifieds · 2.99%"><b>3.0</b></div></div></div>
+        <div class="ex__row"><div class="ex__rowlab">WebArena<br>Shopping</div><div class="ex__bars">
+          <div class="ex__bar ex__bar--1" style="width:34.0%" title="Baseline · Shopping · 3.74%"><b>3.7</b></div>
+          <div class="ex__bar ex__bar--2" style="width:29.2%" title="ReasoningBank · Shopping · 3.21%"><b>3.2</b></div></div></div>
+        <div class="ex__row"><div class="ex__rowlab">SCUBA<br>Sales</div><div class="ex__bars">
+          <div class="ex__bar ex__bar--1" style="width:42.6%" title="Baseline · SCUBA Sales · 4.69%"><b>4.7</b></div>
+          <div class="ex__bar ex__bar--2" style="width:28.4%" title="ReasoningBank · SCUBA Sales · 3.12%"><b>3.1</b></div></div></div>
+
+        <div class="ex__axis"><span>0</span><span>11 percentage points</span></div>
+        <div class="ex__axis-title">
+          Ordered by how much the memory loop widened the gap. It got worse in 10 of 12 domains
+          shown; across all methods and domains, variance rose in 17 of 24 cases (71%).
+        </div>
+      </div>
+
+      <details>
+        <summary>Table view</summary>
+        <div class="ex__tablewrap">
+        <table>
+          <thead><tr><th>Domain</th><th>Baseline gap</th><th>ReasoningBank gap</th><th>Change</th></tr></thead>
+          <tbody>
+            <tr><td>WebArena Multisite (48)</td><td>2.08%</td><td>10.42%</td><td>+400%</td></tr>
+            <tr><td>WebArena Map (109)</td><td>2.75%</td><td>8.26%</td><td>+200%</td></tr>
+            <tr><td>SCUBA Service (45)</td><td>6.67%</td><td>8.89%</td><td>+33%</td></tr>
+            <tr><td>WebArena GitLab (180)</td><td>4.44%</td><td>7.78%</td><td>+75%</td></tr>
+            <tr><td>WebArena Shopping Admin (182)</td><td>2.75%</td><td>4.95%</td><td>+80%</td></tr>
+            <tr><td>WebArena Reddit (106)</td><td>3.77%</td><td>4.72%</td><td>+25%</td></tr>
+            <tr><td>SCUBA Admin (158)</td><td>0.63%</td><td>3.80%</td><td>+500%</td></tr>
+            <tr><td>VisualWebArena Shopping (466)</td><td>1.93%</td><td>3.86%</td><td>+100%</td></tr>
+            <tr><td>VisualWebArena Reddit (210)</td><td>2.38%</td><td>3.33%</td><td>+40%</td></tr>
+            <tr><td>VisualWebArena Classifieds (234)</td><td>2.14%</td><td>2.99%</td><td>+40%</td></tr>
+            <tr><td>WebArena Shopping (187)</td><td>3.74%</td><td>3.21%</td><td>−14%</td></tr>
+            <tr><td>SCUBA Sales (64)</td><td>4.69%</td><td>3.12%</td><td>−33%</td></tr>
+          </tbody>
+        </table>
+        </div>
+      </details>
+    </figure>
+
+    <div class="ex__grid2" style="margin-top:1rem;">
+      <div class="ex__card">
+        <h3 style="font-size:.8rem;text-transform:uppercase;letter-spacing:.07em;color:var(--ink-muted);margin-bottom:.8rem;">The effect being claimed</h3>
+        <p style="font-size:.9rem;">
+          <strong>+1.5%</strong> average gain from ReasoningBank on WebArena — with
+          <strong>p = 0.23</strong>. AWM managed <strong>−0.7%</strong>. Meanwhile the
+          <em>luck window</em> on a single domain reaches 10.4 points.
+        </p>
+      </div>
+      <div class="ex__card">
+        <h3 style="font-size:.8rem;text-transform:uppercase;letter-spacing:.07em;color:var(--ink-muted);margin-bottom:.8rem;">What shuffling costs</h3>
+        <p style="font-size:.9rem;">
+          WebArena drops from <strong>54.8%</strong> (no memory) to <strong>49.1%</strong> with
+          AWM and <strong>49.8%</strong> with ReasoningBank once task order is randomised.
+          Not a lost gain — an actual loss.
+        </p>
+      </div>
+      <div class="ex__card">
+        <h3 style="font-size:.8rem;text-transform:uppercase;letter-spacing:.07em;color:var(--ink-muted);margin-bottom:.8rem;">The baseline nobody ran</h3>
+        <p style="font-size:.9rem;">
+          Their plain no-memory agent scores <strong>54.8%</strong> — beating both original
+          papers' <em>memory-enhanced</em> results (36.3% and 53.9%). The methods were measured
+          against weaker agents than exist now.
+        </p>
+      </div>
+      <div class="ex__card">
+        <h3 style="font-size:.8rem;text-transform:uppercase;letter-spacing:.07em;color:var(--ink-muted);margin-bottom:.8rem;">What the fix recovers</h3>
+        <p style="font-size:.9rem;">
+          Feeding the memory writer the rubric, the environment's error messages, and an explicit
+          &quot;don't suggest APIs&quot; recovers <strong>31%</strong> of the damage.
+          <strong>69% is unexplained</strong>, and the authors decline to guess.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 ─────────────────────────────────────────────────────── -->
+  <section>
+    <h2><span>05</span>The one thing to remember</h2>
+    <div class="ex__hero">
+      <p class="ex__heroline">
+        &ldquo;Without proper validation mechanisms, agent memories are merely
+        <em>unverified hypotheses</em> rather than true lessons learned.&rdquo;
+      </p>
+      <p style="margin-top:1.1rem;font-size:.92rem;">
+        Everything we have written about memory is about <em>where things go</em> — partitions,
+        retrieval, decay, promotion. None of it asks whether the thing written down is
+        <strong>true</strong>. A memory system with no correctness gate is not a filter on
+        experience; it is an amplifier, and the thing it amplifies loudest is whatever got
+        written early.
+      </p>
+    </div>
+  </section>
+
+  <!-- 06 ─────────────────────────────────────────────────────── -->
+  <section>
+    <h2><span>06</span>What we take from it</h2>
+
+    <div class="ex__grid2">
+      <div class="ex__card ex__vs ex__vs--take">
+        <h3>Take</h3>
+        <ul>
+          <li><strong>Three runs, not two.</strong> Our measurement gap (G4) currently closes on
+              a same-day <em>double</em> run. Two runs give a gap; they do not give a spread, and
+              they cannot see order as a confound.</li>
+          <li><strong>Shuffle the inputs.</strong> One line of code, and it is the cheapest
+              stress test in the paper. Any fixed prompt set we build has an implicit order.</li>
+          <li><strong>Never report a single-run number</strong> for a skill's behaviour without
+              saying it is single-run.</li>
+          <li><strong>Tell the writer what it cannot do.</strong> Their most effective single
+              intervention was a negative list — &quot;strictly avoid API solutions, external
+              sites, asking a human&quot; — pasted into the memory prompt.</li>
+        </ul>
+      </div>
+      <div class="ex__card ex__vs ex__vs--leave">
+        <h3>Leave</h3>
+        <ul>
+          <li><strong>The 9× evaluation budget, unconditionally.</strong> Three runs × three
+              orders is right for something that accretes state. It is overkill for a skill that
+              starts fresh each time.</li>
+          <li><strong>The specific numbers as transferable.</strong> These are web-browsing pass
+              rates on GPT-5-mini. The <em>protocol</em> transfers; 4.4% does not.</li>
+          <li><strong>The underspecification diagnosis as settled.</strong> It explains 31% of
+              the effect and rests on a partial hand-inspection. Treat it as the leading
+              hypothesis, not the cause.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 style="font-size:.8rem;text-transform:uppercase;letter-spacing:.07em;color:var(--ink-muted);margin:2rem 0 .3rem;">Where it argues with the pool</h3>
+    <div class="ex__card ex__conflicts">
+      <div class="ex__conflict">
+        <b>Against note 09 §5 — &quot;keep the wrong stuff in.&quot;</b>
+        Manus says leave failures visible so the model stops repeating them. That is advice about
+        the <em>context window</em>. This paper's failure is in the <em>persistent store</em>:
+        ReasoningBank writes lessons from failed runs too, and they compound instead of
+        inoculating. The boundary was never stated because Manus had no memory bank.
+        <b>Keep errors in the window; gate what reaches the bank.</b>
+      </div>
+      <div class="ex__conflict">
+        <b>Against note 15 — outcome-weighted retrieval.</b>
+        Springdrift demotes memories that lead to failures. The Haversine strategy
+        <em>occasionally succeeds</em>, so its utility score stays respectable while the strategy
+        is wrong. Outcome-weighting filters usefulness, not correctness.
+      </div>
+      <div class="ex__conflict">
+        <b>Against note 14 — the promotion ladder.</b>
+        Note 14's cheapest promotion trigger is access-driven: promote what gets retrieved often.
+        That is exactly the curve the paper plots for a contaminated memory — contagion
+        <em>is</em> retrieval frequency. A frequency counter promotes the wrong lesson fastest.
+      </div>
+    </div>
+  </section>
+
+  <p class="ex__footer">
+    This page simplifies deliberately: one diagram, one chart, four numbers that matter.
+    The caveats live in <b>resources/17-self-improving-agent-fragility.md</b>; the detail,
+    the appendix case studies and the full 24-cell variance table live in
+    <a href="https://arxiv.org/abs/2608.18066">the paper</a>.
+    Code: <b>SalesforceAIResearch/self-improve-fragility</b>.
+  </p>
+
+</div>
