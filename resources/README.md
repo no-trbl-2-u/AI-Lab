@@ -34,6 +34,7 @@ The four that map to actual gaps. 11 and 12 are the ones to read first.
 | 09 | [Lessons from Manus](09-manus-context-engineering.md) | KV-cache, recitation, keep errors in |
 | 10 | [12-Factor Agents](10-twelve-factor-agents.md) | own your loop, cap retries, stateless reducer |
 | 15 | [Springdrift: an auditable persistent runtime](15-springdrift-persistent-runtime.md) | the runtime as the unit of design — replay, self-state, outcome-weighted memory `anecdotal` |
+| 17 | [Black-box RL on agent harness](17-black-box-harness-rl.md) | a run is a tree, not a transcript — and 02's claim, measured `measured` |
 
 ## Extraction — prior art alongside your own patterns
 
