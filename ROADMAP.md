@@ -76,10 +76,10 @@ Not gaps — a gap is something *you* can't do. These are the repo's own stages.
 
 Counted from frontmatter, so it cannot drift from the pool it describes.
 
-- **14 of 17 notes carry no `evidence` tier.** They predate the
+- **14 of 18 notes carry no `evidence` tier.** They predate the
   intake gate (`resources/deltas/GRANDFATHERED.md`). Concrete cost: `/reinforce`'s
-  `measured` and `falsifier` axes can only see the other 3.
-- **17 of 17 notes have never been explained back.** `verified: []`
+  `measured` and `falsifier` axes can only see the other 4.
+- **18 of 18 notes have never been explained back.** `verified: []`
   everywhere means PIPELINE stage 5 has not run on the pool once.
 - **0 candidate(s) in `resources/queue/`.** They expire 30 days after queueing.
 

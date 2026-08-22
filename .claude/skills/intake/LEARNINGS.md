@@ -88,3 +88,43 @@ calibration rather than introduction inverts the usual decomposition risk —
 the danger isn't phases that are too big, it's phases that restate something
 already known and teach nothing. Nothing in `/decompose-resource` currently
 reads for that.
+
+## 2026-08-19 · `design` · open
+Phase 0's out-of-scope rule says reject "model training, fine-tuning, anything
+below the harness layer." ClawGym II *is* RL fine-tuning and would have been
+rejected on a literal reading — but its mechanism is entirely harness-layer
+(proxy interception, trajectory reconstruction from an opaque harness), and it
+became a `core` note that measures resource 02's central claim. The rule tests
+the resource's **artifact** (weights) when what matters is its **mechanism**.
+The reader had to override it by hand, and only did so because they happened to
+ask a clarifying question first.
+**Account for:** a scope filter keyed on output type will reject the paper that
+studies your layer from an adjacent one. But loosening it to "anything whose
+mechanism is harness-shaped" plausibly admits most of ML — so the replacement
+wording is not obvious, which is why this is `design` and not `fix`.
+
+## 2026-08-19 · `design` · open
+Between phase 0 and phase 1 the reader asked whether the paper was about
+building their own model. Answering it required naming the training setup, so
+the phase-1 placements were given already knowing what the paper does. Mild
+contamination, disclosed in the delta — but the skill has no procedure for it,
+and phase 0's whole design is about not leaking exactly this.
+**Account for:** phase 1 assumes silence between the topic list and the
+placements. Readers ask questions there, and scope questions are the most
+likely kind because phase 0 is when the resource first looks unfamiliar.
+Options: defer all answers until after the delta is written; answer only in the
+resource's own vocabulary; or accept it and require a contamination line. None
+is obviously right.
+
+## 2026-08-19 · `fix` · open
+The 2026-08-03 arXiv fetching entry says pull `/abs` and `/pdf` together. Both
+halves failed here: the sandbox had no `pdftoppm`/`pdftotext` and `pypdf`'s
+import chain was broken, so the saved PDF was unreadable; and the `/html/`
+fallback renders **every number inside `<math>` tags**, so ordinary tag-strip
+extraction silently dropped all of the headline figures — the abstract read
+"improves Pass@1 by [MATH] and [MATH] points."
+**Account for:** the numbers are in the `alttext` attribute of the `<math>`
+element. Strip tags for prose, then regex `alttext="([^"]+)"` to recover the
+figures — and treat a text extraction with no digits in it as a failed
+extraction, not as a paper without numbers. That silent-loss mode is the
+dangerous part: the evidence tier would have come out `asserted`.
