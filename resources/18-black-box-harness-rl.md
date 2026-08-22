@@ -1,6 +1,6 @@
 ---
 type: Resource
-id: 17
+id: 18
 title: "ClawGym II: Exploring Black-Box RL on Agent Harness"
 description: A production harness can be treated as an opaque rollout engine and trained through — by capturing model calls at the serving boundary and rebuilding the run as a prefix tree whose branch points are the harness's own context-management features.
 origin: external
@@ -66,7 +66,7 @@ generated:
 sources: []
 ---
 
-# 17 — ClawGym II: Exploring Black-Box RL on Agent Harness
+# 18 — ClawGym II: Exploring Black-Box RL on Agent Harness
 
 ## In brief
 

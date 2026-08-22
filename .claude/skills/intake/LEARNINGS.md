@@ -55,6 +55,40 @@ isn't checked will not survive its first author.
 skill's final phase. Whether *that* survives is still a prose rule — see
 `CLAUDE.md`'s enforcement table, where its failure is marked silent.
 
+## 2026-08-19 · `fix` · open
+The arXiv fetch recipe resolved on 2026-08-03 says the `/pdf/` fetch "saves
+locally and reads cleanly page-by-page in phase 2." In this run it didn't. The
+web fetch returned prose but left no file on disk, so phase 2 had to `curl` the
+PDF separately and extract text — and the obvious extractor (`pypdf`) failed on
+a broken system `cryptography` binding until `pip install --upgrade cffi
+cryptography` was run. Roughly ten minutes of the run went to plumbing that the
+skill claims is already solved.
+**Account for:** a resolved `fix` is only resolved for the environment it was
+resolved in. The recipe should either state the fallback (`curl` to the
+scratchpad, then a text extractor, and the `cffi` fix if `pypdf` panics) or stop
+promising a local copy it doesn't control. Prefer the first — the local copy is
+genuinely the right way to read 28 pages, it just isn't free.
+
+## 2026-08-19 · `design` · open
+The phase-1 vocabulary is `known` / `partial` / `unknown`, which classifies
+*conceptual* familiarity. This reader's delta came back with **zero** `unknown`
+and three of four `partial` entries whose boundary was **quantitative, not
+conceptual** — they knew evaluation noise, task-order curricula, and
+rubric-injection as ideas, and did not know their magnitudes. "Would expect
+noise but hasn't reasoned about magnitude" and "new framing, never heard of it"
+both land on `partial`, and they want completely different phases: the first
+wants a measurement exercise, the second wants an explanation. The delta caught
+it only because the notes field was used to say so in prose, which no tooling
+reads.
+**Account for:** `partial` is doing two jobs. Worth asking whether phase 1 needs
+a second axis (*can you state it* vs. *can you predict its size*), or whether
+that's over-instrumenting a step whose value is that it's quick. Note the
+interaction with the empty `unknown` column: a resource that is pure
+calibration rather than introduction inverts the usual decomposition risk —
+the danger isn't phases that are too big, it's phases that restate something
+already known and teach nothing. Nothing in `/decompose-resource` currently
+reads for that.
+
 ## 2026-08-19 · `design` · open
 Phase 0's out-of-scope rule says reject "model training, fine-tuning, anything
 below the harness layer." ClawGym II *is* RL fine-tuning and would have been

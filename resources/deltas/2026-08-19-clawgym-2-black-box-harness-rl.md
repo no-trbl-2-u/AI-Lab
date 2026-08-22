@@ -2,7 +2,7 @@
 
 **Date:** 2026-08-19
 **Resource:** https://arxiv.org/abs/2608.16798v1
-**Note:** [resources/17-black-box-harness-rl.md](../17-black-box-harness-rl.md) — kept, core
+**Note:** [resources/18-black-box-harness-rl.md](../18-black-box-harness-rl.md) — kept, core
 
 **expectation:** none — exploratory
 **retrospective:** false
