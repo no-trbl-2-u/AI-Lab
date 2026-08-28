@@ -22,8 +22,9 @@ the pool from filling with material nobody chose.
 
 ## Core — read these
 
-The ones that map to actual gaps. 11 and 12 are the ones to read first; 17 is
-the only `measured` note in the pool and the only one about evaluation itself.
+The ones that map to actual gaps. 11 and 12 are the ones to read first; 17 and
+18 are the pool's only `measured` notes — 17 the only one about evaluation
+itself, 18 the only one that tests another note's claim.
 
 | # | Resource | Theme |
 |---|---|---|
@@ -36,6 +37,7 @@ the only `measured` note in the pool and the only one about evaluation itself.
 | 10 | [12-Factor Agents](10-twelve-factor-agents.md) | own your loop, cap retries, stateless reducer |
 | 15 | [Springdrift: an auditable persistent runtime](15-springdrift-persistent-runtime.md) | the runtime as the unit of design — replay, self-state, outcome-weighted memory `anecdotal` |
 | 17 | [On the fragility of self-improving agents](17-self-improving-agent-fragility.md) | the noise floor, task order as a hidden curriculum, memory as unverified hypothesis `measured` |
+| 18 | [Black-box RL on agent harness](18-black-box-harness-rl.md) | a run is a tree, not a transcript — and 02's claim, measured `measured` |
 
 ## Extraction — prior art alongside your own patterns
 
