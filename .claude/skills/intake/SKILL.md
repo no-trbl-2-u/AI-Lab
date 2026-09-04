@@ -22,8 +22,8 @@ Three products:
    decision is informed rather than impressionistic.
 2. A **decision** — keep or ignore, never a maybe.
 3. A **knowledge delta** — what the reader knew *before* reading. The input
-   `/decompose-resource` needs to cut phases at their comprehension seams
-   rather than at mine.
+   `/decompose-resource` (unbuilt — see PIPELINE.md build order #4) needs to
+   cut phases at their comprehension seams rather than at mine.
 
 ---
 
@@ -75,8 +75,8 @@ by parsing prose. The other four stay in the body table. See § House format.
    The gap ID is what keeps the pool from becoming a shelf of interesting
    things — a resource that touches no gap is still keepable, but only as
    reference, and saying so out loud is the whole point. The falsifier is what
-   `/decompose-resource` turns into a phase's failing check; an article with no
-   answer to it is not actionable.
+   `/decompose-resource` (unbuilt — see PIPELINE.md) turns into a phase's
+   failing check; an article with no answer to it is not actionable.
 
 ### Integrity rule
 
@@ -98,9 +98,14 @@ Concrete, not categorical: `"prefix caching and what invalidates it"` not
 
 Do not summarize. Do not evaluate. Do not hint at what you think.
 
-**Fetching arXiv:** pull `/abs/<id>` for title, authors, date and abstract — the
-`/pdf/` fetch extracts headings poorly, but it saves the file locally, and that
-copy reads cleanly page-by-page in phase 2. Fetch both in one call.
+**Fetching arXiv:** pull `/abs/<id>` for title, authors, date and abstract, and
+`/pdf/<id>` in the same call for the prose. The `/pdf/` fetch extracts headings
+poorly, and **do not assume it left a file on disk** — in one run it returned
+text and saved nothing. For phase 2's page-by-page read, get a local copy
+explicitly: `curl -L -o <scratch>/<id>.pdf https://arxiv.org/pdf/<id>`, then
+extract text (`pypdf` or equivalent). If `pypdf` fails on a broken
+`cryptography` binding, `pip install --upgrade cffi cryptography` and retry.
+The local copy is the right way to read a long paper; it just isn't free.
 
 **The ordering is the methodology.** Explain the resource first and ask what the
 reader knew second, and the answer is contaminated — they'll report
@@ -145,10 +150,11 @@ anyone wrote it), then the eight points, then:
 **Expectation diff.** Compare against the reader's phase-1 prediction. Name
 where they were right, where they were wrong, and where the article answers a
 question they didn't think to ask. **Wrong predictions are the best phase
-material available** — flag them explicitly for `/decompose-resource`.
+material available** — flag them explicitly for `/decompose-resource` (unbuilt
+— see PIPELINE.md).
 
 Check overlap against the pool before claiming novelty: grep `resources/` for
-the topic vocabulary rather than loading all 14 notes. Past ~25 notes, delegate
+the topic vocabulary rather than loading every note. Past ~25 notes, delegate
 this to a subagent that returns only the overlap list.
 
 ## Phase 3 — Decide
@@ -187,25 +193,14 @@ means both halves are present.
 ### Always — what this run taught about this skill
 
 If the run exposed something about **`/intake` itself**, append it to
-[`LEARNINGS.md`](LEARNINGS.md) next to this file:
-
-```markdown
-## YYYY-MM-DD · `kind` · open
-<what happened>
-**Account for:** <what should change, or what to watch for>
-```
-
-`fix` apply directly · `design` a real open question, and what `/brainstorm`
-pulls with no argument · `friction` it worked but was tedious.
+[`LEARNINGS.md`](LEARNINGS.md) next to this file. Format, kinds, the "nothing
+new" rule and the check: see `CLAUDE.md` § Learning from a run.
 
 This step exists because it was already learned the hard way: the first run of
 this skill produced four fixes, recorded them in a `## Findings for the skill`
 section invented on the spot inside the delta, and **the very next delta didn't
 have that section.** A residue convention that lives outside the procedure does
 not survive its first author.
-
-**"Nothing new" is a first-class answer** — the same rule as phase 1's "no
-expectation", and for the same reason. A run that taught nothing adds nothing.
 
 ### House format
 

@@ -47,7 +47,7 @@ you are running axis 2 as a topic search.
 ### Notes 01–14 have no `evidence` field
 
 They predate the intake gate and carry no `evidence`, `gap`, or `falsifier` —
-see `deltas/GRANDFATHERED.md`. For those, axes 1 and 4 **cannot fire**. Say so
+see `resources/deltas/GRANDFATHERED.md`. For those, axes 1 and 4 **cannot fire**. Say so
 in the run record rather than substituting a topic search; "this note has no
 recorded evidence tier to attack" is the finding, and the fix is a retrospective
 intake, not a worse search.
@@ -129,23 +129,11 @@ node guards/reinforce.mjs
 If the run exposed something about **`/reinforce` itself** — an axis that
 returned nothing useful, a query shape that kept finding agreement, a note whose
 frontmatter couldn't feed the axes — append it to [`LEARNINGS.md`](LEARNINGS.md)
-next to this file:
-
-```markdown
-## YYYY-MM-DD · `kind` · open
-<what happened>
-**Account for:** <what should change, or what to watch for>
-```
-
-`fix` apply directly · `design` a real open question, and what `/brainstorm`
-pulls with no argument · `friction` it worked but was tedious.
+next to this file. Format, kinds, the "nothing new" rule and the check: see
+`CLAUDE.md` § Learning from a run.
 
 The control's overlap number belongs here whenever it's surprising, in either
-direction. **"Nothing new" is a first-class answer.**
-
-```bash
-node tools/learnings.mjs --check
-```
+direction.
 
 ---
 
