@@ -18,8 +18,9 @@ because this was unproven at authoring time.
 
 There is also a known coverage problem: axes `measured` and `falsifier` read
 `evidence.tier` and `falsifier` from frontmatter, and notes 01–14 are
-grandfathered without either. **Two of sixteen notes are visible to half the
-axes.**
+grandfathered without either. **Three of seventeen notes are visible to half
+the axes** (15, 16, 17 — the only ones with `evidence:` and `falsifier:` in
+frontmatter, as of 2026-09-04).
 **Account for:** run it against note 09 or 15, record the control overlap, and
 decide. If the overlap is near-total the axes are decorative and the skill needs
 rethinking rather than shipping. Separately: does the grandfathered coverage hole

@@ -19,6 +19,10 @@ description: >
 See [PIPELINE.md](../../../PIPELINE.md) build order #6 and
 [G12](../../../GAPS.md).
 
+**Before running: read this skill's [`LEARNINGS.md`](LEARNINGS.md) and apply
+any open `fix` entries.** A `fix` left open is an instruction this file is known
+to get wrong; running the file as written repeats the failure that produced it.
+
 ## Called with no argument
 
 ```bash
@@ -96,21 +100,28 @@ If the underlying problem isn't clear, say so and move to phase 1 anyway.
 
 ## Phase 1 — Capture (the one mandatory question)
 
-**Ask this before offering any position:**
+**Ask this before offering any position, via `AskUserQuestion` — not prose.**
+The question is "has this actually bitten you, or is it a hypothesis — and what
+prompted it right now?", and the four provenance tags are the options. The tags
+are a closed set, which is exactly the shape that tool wants; asked in prose
+the question went unanswered for two turns in the first real session while
+finished work sat waiting.
 
-> Has this actually bitten you, or is it a hypothesis? And what prompted it right
-> now — something that broke, or a general unease?
+| Option | The answer sounds like | What the tag means for ranking |
+|---|---|---|
+| `observed` | "It broke last Tuesday and here's the file" | strongest; sorts first in `GAPS.md` and `ROADMAP.md` |
+| `stated` | "I want to be able to do X" | a want, not an incident; the tag everything drifts toward |
+| `delta` | "Reading note 15 made me realise…" | came from the pool; a resource question until proven otherwise |
+| `inferred` | "General unease, nothing broke" | a hypothesis; say so out loud, and expect `declined` or `deferred` |
+
+Each option carries its ranking consequence in its description, so the user is
+choosing a position on the spine, not a phrasing. **Prose fallback:** if the
+user has already volunteered the answer in their opening message, don't re-ask —
+name the tag you heard and carry on.
 
 This is the only required question, and it does double duty: it satisfies
 `CLAUDE.md`'s rule that a prediction is captured before anything is explained,
 and its answer *is* the provenance tag the gap will carry.
-
-| The answer sounds like | Tag |
-|---|---|
-| "It broke last Tuesday and here's the file" | `observed` |
-| "I want to be able to do X" | `stated` |
-| "Reading note 15 made me realise…" | `delta` |
-| "General unease, nothing broke" | `inferred` — and say so out loud |
 
 **Provenance is this repo's ranking signal.** `observed` sorts above `stated`
 above `inferred` in `GAPS.md`, in `ROADMAP.md`, and in G13's future scope check.
@@ -132,13 +143,15 @@ and you do not run them all.
 
 **Stop asking when the user signals enough. Don't grind.**
 
-> **A recorded tension.** `/root/.claude/skills/rpg-mechanics-brainstorm`
-> asks 2–4 probing questions before offering anything. `/mnt/skills/examples/learn`
-> argues the opposite: *"three Socratic questions before any teaching makes
-> learners disengage; if they're stuck, teach, then ask."* This skill chooses
-> **one capture, then positions**, with follow-ups only on live threads. The
-> choice is recorded rather than assumed so it can be revisited if sessions feel
-> thin.
+> **A recorded tension.** Two earlier skills of the author's, on another
+> machine and not in this repo, took opposite positions: one asked 2–4 probing
+> questions before offering anything; the other argued *"three Socratic
+> questions before any teaching makes learners disengage; if they're stuck,
+> teach, then ask."* This skill chooses **one capture, then positions**, with
+> follow-ups only on live threads. The choice is recorded rather than assumed so
+> it can be revisited if sessions feel thin. (`AGENTS.md` § During a lesson
+> holds the same tension for the repo as a whole: Socratic in lessons, default
+> when building.)
 
 ## Phase 2 — Ground it in the pool
 
@@ -282,24 +295,8 @@ line saying where it landed, and set `from_learning:` in the session file.
 
 If the run exposed something about **`/brainstorm` itself** — a phase that
 dragged, a case it didn't handle, an instruction that turned out to be wrong —
-append it to [`LEARNINGS.md`](LEARNINGS.md) next to this file:
-
-```markdown
-## YYYY-MM-DD · `kind` · open
-<what happened>
-**Account for:** <what should change, or what to watch for>
-```
-
-`fix` apply directly · `design` a real open question, and what `--next` pulls ·
-`friction` it worked but was tedious; four open ones trip a threshold.
-
-**"Nothing new" is a first-class answer.** A run that taught nothing adds
-nothing. Manufacturing a learning to fill the section is how these files stop
-being read.
-
-```bash
-node tools/learnings.mjs --check
-```
+append it to [`LEARNINGS.md`](LEARNINGS.md) next to this file. Format, kinds,
+the "nothing new" rule and the check: see `CLAUDE.md` § Learning from a run.
 
 ---
 

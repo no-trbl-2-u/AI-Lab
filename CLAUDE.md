@@ -8,6 +8,11 @@ failed phase regardless of whether the code works.
 becomes work. [`ROADMAP.md`](ROADMAP.md) is the generated "what's next" view —
 **never edit it**; edit its sources and run `npm run roadmap`.
 
+@AGENTS.md
+
+`AGENTS.md` holds the Always/Never rules and the Socratic-vs-build scoping.
+This file holds the mechanics.
+
 ---
 
 ## Answering from the knowledge layer
@@ -65,9 +70,8 @@ in the tool is one they can answer by picking.
   get it. An option whose description is only its upside is advertising, and
   the user can't choose against something they weren't told.
 
-The bar for asking at all is unchanged: ask when the readings diverge into
-materially different work. Otherwise pick the obvious default, say which, and
-carry on.
+This section is *how* to ask. *When* to ask — Socratic during a lesson, pick the
+default when building — lives in `AGENTS.md` and is not restated here.
 
 ## Building
 
@@ -87,12 +91,24 @@ npm run guard   # gaps + okf + reinforce + learnings + roadmap staleness
 
 **When running a skill teaches you something about the skill, record it** in the
 `LEARNINGS.md` beside it — `.claude/skills/<name>/`, `.claude/agents/`, or
-`guards/`. Each skill's final phase says how; the format is one entry per
-lesson, typed `fix` / `design` / `friction`.
+`guards/`. Each skill's final phase points here; this is the one home for the
+format. One entry per lesson:
+
+```markdown
+## YYYY-MM-DD · `kind` · open
+<what happened>
+**Account for:** <what should change, or what to watch for>
+```
+
+`fix` apply directly · `design` a real open question, and what `--next` pulls ·
+`friction` it worked but was tedious; four open ones trip a threshold. A
+resolved entry changes its heading to `· resolved YYYY-MM-DD` and adds a
+`**Resolved:**` line saying what changed and where.
 
 ```bash
 node tools/learnings.mjs          # what's open, per unit
 node tools/learnings.mjs --next   # the oldest open `design` — what /brainstorm pulls
+node tools/learnings.mjs --check  # format is well-formed; non-zero on any problem
 ```
 
 `/brainstorm` **with no argument** runs on that entry, which is how a lesson
