@@ -3,8 +3,9 @@
 What running `/brainstorm` has taught about `/brainstorm`. Format and checks:
 `node tools/learnings.mjs --check`.
 
-**It has never been run on a real idea.** The entry below is a design question,
-not an observation.
+The 2026-08-06 entry predates any real run and is a design question, not an
+observation. The 2026-08-08 entries come from the first real session,
+`brainstorms/2026-08-08-functional-programming-for-ai-workspaces.md`.
 
 ## 2026-08-06 · `design` · open
 The advocate pair — `idea-man` and `devils-advocate`, spawned unconditionally
@@ -27,7 +28,7 @@ threshold in `tools/learnings.mjs`.
 worth two subagents or the advocate's prompt is too soft — and those want
 different fixes.
 
-## 2026-08-08 · `fix` · open
+## 2026-08-08 · `fix` · resolved 2026-09-04
 Phase 1's capture question is specified as prose, and phase 5 is the only place
 `AskUserQuestion` appears. In the first real session that ordering stalled: the
 question was asked in prose, went unanswered across two turns while the advocate
@@ -43,6 +44,11 @@ drifts toward.
 provenance tags as options, not prose. The tags are already a closed set, which
 is exactly the shape that tool wants. Keep the prose fallback for when the user
 has already volunteered the answer.
+**Resolved:** phase 1 now specifies `AskUserQuestion` with the four tags as
+options, each carrying its ranking consequence, and a prose fallback only when
+the user already volunteered the tag. `.claude/skills/brainstorm/SKILL.md`
+§ Phase 1. The skill also now opens with "read LEARNINGS.md and apply open
+`fix` entries before running", since this fix sat open for four weeks.
 
 ## 2026-08-08 · `design` · open
 Partial counter-evidence for the 2026-08-06 entry, recorded rather than claimed.
