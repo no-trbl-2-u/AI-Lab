@@ -4,6 +4,7 @@ description: >
   Argues the happy path for a proposed idea and extrapolates it to scale.
   Invoked by /brainstorm, always paired with devils-advocate, and never told
   what the other one said.
+model: sonnet
 tools: Read, Grep, Glob
 ---
 

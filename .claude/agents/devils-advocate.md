@@ -4,6 +4,7 @@ description: >
   Argues the unhappy path for a proposed idea — its cost, what it breaks, and
   the case for not building it at all. Invoked by /brainstorm, always paired
   with idea-man, and never told what the other one said.
+model: sonnet
 tools: Read, Grep, Glob
 ---
 
