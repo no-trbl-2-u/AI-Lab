@@ -69,6 +69,22 @@ scratchpad, then a text extractor, and the `cffi` fix if `pypdf` panics) or stop
 promising a local copy it doesn't control. Prefer the first — the local copy is
 genuinely the right way to read 28 pages, it just isn't free.
 
+## 2026-08-30 · `friction` · open
+Phase 1 says to write the delta "now, before phase 2" — at a point where the
+resource has no id or slug yet, since those are only decided at phase 4 when
+the note file is written. I named the delta from the article's own title
+(`2026-08-30-automated-researchers-alignment-failures.md`). At phase 4 the
+note ended up filed as `18-automated-alignment-research.md` — a shorter,
+edited slug — and `guards/intake.mjs` requires the delta filename to end
+`-<note-slug>.md`. `npm run guard` caught the mismatch after the note was
+already written, and the delta had to be renamed to match.
+**Account for:** the delta's slug is picked before the fact this repo is
+willing to commit to a title even exists. Either state in phase 1 that the
+delta slug is provisional and must be reconciled with the note's actual slug
+as part of phase 4's residue step, or just check filename agreement inside
+`npm run guard` earlier in the phase-4 checklist wording so it isn't
+discovered only by running the guard.
+
 ## 2026-08-19 · `design` · open
 The phase-1 vocabulary is `known` / `partial` / `unknown`, which classifies
 *conceptual* familiarity. This reader's delta came back with **zero** `unknown`
